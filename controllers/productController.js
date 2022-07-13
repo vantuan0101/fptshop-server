@@ -1,5 +1,5 @@
 const { Products, ProductsDetails, sequelize, Brands } = require("../models");
-
+const { Op } = require("sequelize");
 // const getAllProducts = async (req, res) => {
 //   try {
 //     const [result] = await sequelize.query(`
@@ -54,13 +54,32 @@ const { Products, ProductsDetails, sequelize, Brands } = require("../models");
 // };
 
 const getProducts = async (req, res) => {
+  const { sort } = req.query;
+  const resOptionPrice = req.rangePrice;
+  const resOptionBrand = req.rangeBrand;
+  // console.log(resOptionBrand);
   try {
     const products = await Brands.findAll({
+      attributes: { exclude: ["createdAt", "updatedAt"] },
       include: {
         model: Products,
         // as : "products_list",
-        attributes: { exclude: ["id", "createdAt", "updatedAt"] },
+        // attributes: { exclude: ["id", "createdAt", "updatedAt"] },
+        include: {
+          model: ProductsDetails,
+          attributes: { exclude: ["id", "createdAt", "updatedAt"] },
+        },
+
+        where: {
+          [Op.or]: resOptionPrice,
+        },
       },
+      where: resOptionBrand
+        ? {
+            [Op.or]: resOptionBrand,
+          }
+        : {},
+      order: [[Products, "price", `${sort ? sort : "desc"}`]],
     });
     res.status(200).json({
       status: "Success",
@@ -84,8 +103,7 @@ const getProduct = async (req, res) => {
         where: {
           id,
         },
-        include : ProductsDetails
-        
+        include: ProductsDetails,
       },
     });
     res.status(200).json({

@@ -1,11 +1,11 @@
-const { Products, ProductsDetails, sequelize, Brands } = require("../models");
+const { Products, ProductsDetails, sequelize } = require("../../models");
 const { Op } = require("sequelize");
 
 const filterProduct = async (req, res, next) => {
   const params = req.query;
-  const checkQuery = Object.keys(params).length === 0;
+  const checkPrice = Object.keys(params).length === 0;
   // console.log(params["hang-san-xuat"]);
-  if (!checkQuery) {
+  if (!checkPrice) {
     // Sort By Range Price
     if (params["muc-gia"]) {
       const optionPrice = params["muc-gia"]?.split(",");
@@ -29,8 +29,6 @@ const filterProduct = async (req, res, next) => {
         return res;
       }, []);
       req.rangePrice = resOptionPrice;
-    } else {
-      req.rangePrice = [{ price: { [Op.gt]: 0 } }];
     }
     // Sort By Brand
     if (params["hang-san-xuat"]) {
@@ -38,35 +36,19 @@ const filterProduct = async (req, res, next) => {
       const resBrand = brand?.reduce((res, acc, i) => {
         const name = acc.charAt(0).toUpperCase() + acc.slice(1);
         // console.log(name);
-        res.push({ name });
+        res.push({ brand: name });
         return res;
       }, []);
       req.rangeBrand = resBrand;
       // console.log(resBrand);
     }
-
-    next();
-  } else {
-    try {
-      const products = await Brands.findAll({
-        attributes: { exclude: ["createdAt", "updatedAt"] },
-        include: {
-          model: Products,
-          include: ProductsDetails,
-        },
-        order: [["id", "asc"]],
-      });
-      res.status(200).json({
-        status: "Success",
-        data: products,
-      });
-    } catch (error) {
-      res.status(500).json({
-        status: "fail",
-        message: error,
-      });
+    // console.log(params["tim-kiem"]);
+    if (params["tim-kiem"]) {
+      const search = params["tim-kiem"];
+      req.search = search;
     }
   }
+  next();
 };
 
 module.exports = { filterProduct };

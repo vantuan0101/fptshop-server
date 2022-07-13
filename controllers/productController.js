@@ -57,29 +57,38 @@ const getProducts = async (req, res) => {
   const { sort } = req.query;
   const resOptionPrice = req.rangePrice;
   const resOptionBrand = req.rangeBrand;
+  const resSearch = req.search;
   // console.log(resOptionBrand);
+  let resultHandle = [];
+  if (resOptionPrice) {
+    resultHandle.push({ [Op.or]: resOptionPrice });
+  }
+  if (resOptionBrand) {
+    resultHandle.push({ [Op.or]: resOptionBrand });
+  }
+  if (resSearch) {
+    resultHandle.push({
+      name: {
+        [Op.like]: `%${resSearch}%`,
+      },
+    });
+  }
+  // console.log(resultHandle);
   try {
-    const products = await Brands.findAll({
+    const products = await Products.findAll({
       attributes: { exclude: ["createdAt", "updatedAt"] },
       include: {
-        model: Products,
+        model: ProductsDetails,
+        attributes: { exclude: ["id", "createdAt", "updatedAt"] },
         // as : "products_list",
         // attributes: { exclude: ["id", "createdAt", "updatedAt"] },
-        include: {
-          model: ProductsDetails,
-          attributes: { exclude: ["id", "createdAt", "updatedAt"] },
-        },
-
-        where: {
-          [Op.or]: resOptionPrice,
-        },
       },
-      where: resOptionBrand
-        ? {
-            [Op.or]: resOptionBrand,
-          }
-        : {},
-      order: [[Products, "price", `${sort ? sort : "desc"}`]],
+
+      where: {
+        [Op.and]: resultHandle,
+      },
+
+      order: [["price", `${sort ? sort : "desc"}`]],
     });
     res.status(200).json({
       status: "Success",

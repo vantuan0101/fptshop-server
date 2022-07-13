@@ -18,14 +18,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       image: {
-        type: DataTypes.STRING,
-        defaultValue: "https://via.placeholder.com/150",
+        type: DataTypes.TEXT,
+        // defaultValue: "https://via.placeholder.com/150",
       },
       description: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       specification: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       payment: {
         type: DataTypes.STRING,

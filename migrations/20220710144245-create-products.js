@@ -11,18 +11,31 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
+      brand: {
+        type: Sequelize.STRING,
+      },
       discount: {
+        type: Sequelize.STRING,
+      },
+      flash_sale: {
+        type: Sequelize.BOOLEAN,
+      },
+      options: {
         type: Sequelize.STRING,
       },
       price: {
         type: Sequelize.INTEGER,
       },
-      brand_id: {
-        type : Sequelize.INTEGER,
-        references : {
-          model : "Brands",
-          key : "id"
-        }
+      thumbnail: {
+        type: Sequelize.TEXT,
+        defaultValue: "https://via.placeholder.com/150",
+
+      },
+      sold : {
+        type : Sequelize.BIGINT,
+      },
+      gift_online:{
+        type : Sequelize.BOOLEAN,
       },
       createdAt: {
         allowNull: false,

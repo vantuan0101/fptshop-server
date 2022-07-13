@@ -12,14 +12,14 @@ module.exports = {
         type: Sequelize.STRING,
       },
       image: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         defaultValue: "https://via.placeholder.com/150",
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       specification: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       payment: {
         type: Sequelize.STRING,

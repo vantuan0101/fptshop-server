@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ ProductsDetails, Brands }) {
       // define association here
       this.hasOne(ProductsDetails, { foreignKey: "product_id" });
-      this.belongsTo(Brands, { foreignKey: "brand_id" });
     }
   }
   Products.init(
@@ -19,14 +18,33 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      brand: {
+        type: DataTypes.STRING,
+
+      },
       discount: {
         type: DataTypes.STRING,
         defaultValue: 0,
+      },
+      flash_sale: {
+        type: DataTypes.BOOLEAN,
+      },
+      options: {
+        type: DataTypes.STRING,
       },
       price: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      sold: {
+        type: DataTypes.BIGINT,
+      },
+      gift_online: {
+        type: DataTypes.BOOLEAN,
+      },
+      thumbnail: {
+        type: DataTypes.STRING,
+      }
     },
     {
       sequelize,

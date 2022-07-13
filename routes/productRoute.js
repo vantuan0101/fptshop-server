@@ -1,6 +1,6 @@
 const express = require("express");
 const {createProduct , getProducts ,getProduct} = require("../controllers/productController");
-const {filterProduct} = require('../middlewares/filterProduct')
+const {filterProduct} = require('../middlewares/filterProduct/filterProduct')
 
 const productsRouter = express.Router();
 

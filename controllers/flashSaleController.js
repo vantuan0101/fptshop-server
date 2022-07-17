@@ -5,10 +5,7 @@ const getFlashSales = async (req, res) => {
     const productSale = await Products.findAll({
       where: {
         flash_sale: true,
-      },
-      include: {
-        model: ProductsDetails,
-      },
+      }
     });
     res.status(200).json({
       status: "Success",

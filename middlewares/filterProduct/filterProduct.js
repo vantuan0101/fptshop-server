@@ -4,8 +4,8 @@ const { Op } = require("sequelize");
 const filterProduct = async (req, res, next) => {
   const params = req.query;
   const checkPrice = Object.keys(params).length === 0;
-  // console.log(params);
-  if (!checkPrice) {
+  console.log(params);
+  if (!checkPrice ) {
     // Sort By Range Price
     if (params["muc-gia"]) {
       const optionPrice = params["muc-gia"]?.split(",");

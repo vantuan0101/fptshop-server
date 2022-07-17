@@ -53,7 +53,7 @@ const getProducts = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       status: "fail",
-      message: error,
+      message: "Product not found",
     });
   }
 };
@@ -62,10 +62,6 @@ const getProduct = async (req, res) => {
   const { id } = req.params;
   try {
     const product = await Products.findOne({
-      include: {
-        model: ProductsDetails,
-        // as : 'products_list' ,
-      },
       where: {
         id,
       },
@@ -77,7 +73,7 @@ const getProduct = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       status: "fail",
-      message: error,
+      message: "Product not found",
     });
   }
 };

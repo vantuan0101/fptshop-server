@@ -37,6 +37,22 @@ module.exports = {
       gift_online:{
         type : Sequelize.BOOLEAN,
       },
+      color: {
+        type: Sequelize.STRING,
+      },
+      image: {
+        type: Sequelize.TEXT,
+        // defaultValue: "https://via.placeholder.com/150",
+      },
+      description: {
+        type: Sequelize.TEXT,
+      },
+      specification: {
+        type: Sequelize.TEXT,
+      },
+      payment: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

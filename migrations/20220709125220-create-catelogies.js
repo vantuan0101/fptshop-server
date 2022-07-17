@@ -11,6 +11,9 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      catelogy: {
+        type: Sequelize.JSON
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -1,13 +1,16 @@
 const express = require("express");
 const { sequelize } = require("./models");
 const { rootRouter } = require("./routes");
+const dotenv = require("dotenv");
+const path = require("path");
 const app = express();
-
+dotenv.config({ path: "./config.env" });
 app.use(express.json());
-
+const publicDir = path.join(__dirname, "./public");
+app.use("public", express.static(publicDir));
 app.use("/api/v1/", rootRouter);
 
-const port = 3001;
+const port = process.env.PORT;
 app.listen(port, async () => {
   console.log(`Server is running on port http://localhost:${port}`);
   try {

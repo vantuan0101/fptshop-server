@@ -4,7 +4,7 @@ const { Op } = require("sequelize");
 const filterProduct = async (req, res, next) => {
   const params = req.query;
   const checkPrice = Object.keys(params).length === 0;
-  // console.log(params["hang-san-xuat"]);
+  // console.log(params);
   if (!checkPrice) {
     // Sort By Range Price
     if (params["muc-gia"]) {
@@ -30,6 +30,13 @@ const filterProduct = async (req, res, next) => {
       }, []);
       req.rangePrice = resOptionPrice;
     }
+    // sort = 'ban-chay-nhat' order : [] , if sort desc , asc order : [['price', sort]]   
+    if (params.sort == "ban-chay-nhat" || !params.sort) {
+      req.sortPice = []
+    }else {
+      req.sortPice  = [["price", `${params.sort}`]] 
+    }
+
     // Sort By Brand
     if (params["hang-san-xuat"]) {
       const brand = params["hang-san-xuat"]?.split(",");
@@ -46,6 +53,18 @@ const filterProduct = async (req, res, next) => {
     if (params["tim-kiem"]) {
       const search = params["tim-kiem"];
       req.search = search;
+    }
+    if (params["trang"] || params.limit) {
+      // can get product without page
+      // can't get product without limit
+      // get product with limit and page -> pagination
+      const limit = params.limit * 1 || 10;
+      const pagination = params["trang"] * 1 || null;
+      const skip = pagination ?  pagination * limit -limit : null; 
+      // console.log(limit,pagination,skip);
+      req.page = { skip, limit };
+    } else {
+      req.page = { skip: null, limit: null };
     }
   }
   next();

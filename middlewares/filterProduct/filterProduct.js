@@ -4,7 +4,7 @@ const { Op } = require("sequelize");
 const filterProduct = async (req, res, next) => {
   const params = req.query;
   const checkPrice = Object.keys(params).length === 0;
-  console.log(params);
+  // console.log(params);
   if (!checkPrice ) {
     // Sort By Range Price
     if (params["muc-gia"]) {
@@ -49,11 +49,7 @@ const filterProduct = async (req, res, next) => {
       req.rangeBrand = resBrand;
       // console.log(resBrand);
     }
-    // console.log(params["tim-kiem"]);
-    if (params["tim-kiem"]) {
-      const search = params["tim-kiem"];
-      req.search = search;
-    }
+   
     if (params["trang"] || params.limit) {
       // can get product without page
       // can't get product without limit
@@ -67,7 +63,14 @@ const filterProduct = async (req, res, next) => {
       req.page = { skip: null, limit: null };
     }
   }
-  next();
+  if(params["muc-gia"] || params.sort || params["hang-san-xuat"] || params["trang"] || params.limit) {
+    next();
+  }else{
+    res.status(500).json({
+      status: "fail",
+      message : "Not Found Query",
+    });
+  }
 };
 
 module.exports = { filterProduct };

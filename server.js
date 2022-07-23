@@ -3,9 +3,12 @@ const { sequelize } = require("./models");
 const { rootRouter } = require("./routes");
 const dotenv = require("dotenv");
 const path = require("path");
+const cors = require('cors');
 const app = express();
 dotenv.config({ path: "./config.env" });
 app.use(express.json());
+app.use(express.urlencoded());
+app.use(cors())
 const publicDir = path.join(__dirname, "./public");
 app.use("public", express.static(publicDir));
 app.use("/api/v1/", rootRouter);

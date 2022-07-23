@@ -5,8 +5,7 @@ const getProducts = async (req, res) => {
   const sortPice = req.sortPice;
   const resOptionPrice = req.rangePrice;
   const resOptionBrand = req.rangeBrand;
-  const resSearch = req.search;
-  const  pagination = req.page ;
+  const pagination = req.page;
   // console.log(pagination);
   let resultHandle = [];
   if (req.query.sort == "ban-chay-nhat") {
@@ -19,8 +18,7 @@ const getProducts = async (req, res) => {
         },
       ],
     });
-    
-  } 
+  }
 
   if (resOptionPrice) {
     resultHandle.push({ [Op.or]: resOptionPrice });
@@ -28,23 +26,17 @@ const getProducts = async (req, res) => {
   if (resOptionBrand) {
     resultHandle.push({ [Op.or]: resOptionBrand });
   }
-  if (resSearch) {
-    resultHandle.push({
-      name: {
-        [Op.like]: `%${resSearch}%`,
-      },
-    });
-  }
+
   // console.log(resultHandle);
   try {
     const products = await Products.findAndCountAll({
       where: {
         [Op.and]: resultHandle,
       },
- 
+
       order: sortPice || [],
-      limit : pagination?.limit ,
-      offset : pagination?.skip ,
+      limit: pagination?.limit,
+      offset: pagination?.skip,
     });
     res.status(200).json({
       status: "Success",
@@ -92,4 +84,37 @@ const createProduct = async (req, res) => {
   }
 };
 
-module.exports = { createProduct, getProducts, getProduct };
+const searchProduct = async (req, res) => {
+  const { q } = req.query;
+  console.log(q);
+  try {
+    if (q === "") {
+      return res.status(200).json({
+        message: "The given data was invalid.",
+        errors: {
+          q: ["The q field is required."],
+        },
+        status_code: 422,
+      });
+    }
+
+    const searchResult = await Products.findAll({
+      where: {
+        name: {
+          [Op.like]: `%${q}%`,
+        },
+      },
+    });
+    res.status(200).json({
+      status: "success",
+      data: searchResult,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: error.message,
+    });
+  }
+};
+
+module.exports = { createProduct, getProducts, getProduct, searchProduct };

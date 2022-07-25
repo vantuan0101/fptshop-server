@@ -1,4 +1,4 @@
-const { Products, ProductsDetails, sequelize, Brands } = require("../models");
+const { Products, ProductsDetails, sequelize, Brands ,BrandPhones ,ProductPhones} = require("../models");
 const { Op } = require("sequelize");
 
 const getProducts = async (req, res) => {
@@ -6,7 +6,7 @@ const getProducts = async (req, res) => {
   const resOptionPrice = req.rangePrice;
   const resOptionBrand = req.rangeBrand;
   const pagination = req.page;
-  // console.log(pagination);
+  console.log(req.params);
   let resultHandle = [];
   if (req.query.sort == "ban-chay-nhat") {
     resultHandle.push({
@@ -86,7 +86,7 @@ const createProduct = async (req, res) => {
 
 const searchProduct = async (req, res) => {
   const { q } = req.query;
-  console.log(q);
+  // console.log(q);
   try {
     if (q === "") {
       return res.status(200).json({
@@ -116,5 +116,24 @@ const searchProduct = async (req, res) => {
     });
   }
 };
+const getHotPhone = async (req, res) => {
+  try {
+    // const optionsReq = req.params;
+    const productList = await BrandPhones.findAll({
+      include :{
+        model : ProductPhones,
+      }
+    });
+    res.status(200).json({
+      status: "success",
+      data: productList,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: error.message,
+    });
+  }
+}
 
-module.exports = { createProduct, getProducts, getProduct, searchProduct };
+module.exports = { createProduct, getProducts, getProduct, searchProduct ,getHotPhone};

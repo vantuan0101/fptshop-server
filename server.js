@@ -10,10 +10,11 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors())
 const publicDir = path.join(__dirname, "./public");
-app.use("public", express.static(publicDir));
+app.use("/public", express.static(publicDir));
 app.use("/api/v1/", rootRouter);
 
 const port = process.env.PORT;
+
 app.listen(port, async () => {
   console.log(`Server is running on port http://localhost:${port}`);
   try {

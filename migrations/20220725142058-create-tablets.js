@@ -30,8 +30,12 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue: 0,
       },
-      flash_sale: {
-        type: Sequelize.BOOLEAN,
+      status_sale: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "StatusSales",
+          key: "id",
+        },
       },
       options: {
         type: Sequelize.JSON,

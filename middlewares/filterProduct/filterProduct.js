@@ -63,14 +63,14 @@ const filterProduct = async (req, res, next) => {
       req.page = { skip: null, limit: null };
     }
   }
-  if(params["muc-gia"] || params.sort || params["hang-san-xuat"] || params["trang"] || params.limit) {
-    next();
-  }else{
-    res.status(500).json({
-      status: "fail",
-      message : "Not Found Query",
-    });
-  }
+  next();
+  // if(params["muc-gia"] || params.sort || params["hang-san-xuat"] || params["trang"] || params.limit) {
+  // }else{
+  //   res.status(500).json({
+  //     status: "fail",
+  //     message : "Not Found Query",
+  //   });
+  // }
 };
 
 module.exports = { filterProduct };

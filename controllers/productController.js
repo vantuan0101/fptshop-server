@@ -1,54 +1,24 @@
-const { Products, ProductsDetails, sequelize, Brands ,BrandPhones ,ProductPhones} = require("../models");
+const {
+  StatusSales,
+  BrandPhones,
+  BrandLaptops,
+  Phones,
+  BrandDesktops,
+  Desktops,
+  BrandTablets,
+  Tablets,
+  Laptops,
+  BrandAccessories,
+  Accessories,
+} = require("../models");
 const { Op } = require("sequelize");
+const { getHotProducts, returnResultProduct,returnCreateProduct } = require("../Utils/ProductsServices");
 
-const getProducts = async (req, res) => {
-  const sortPice = req.sortPice;
-  const resOptionPrice = req.rangePrice;
-  const resOptionBrand = req.rangeBrand;
-  const pagination = req.page;
-  console.log(req.params);
-  let resultHandle = [];
-  if (req.query.sort == "ban-chay-nhat") {
-    resultHandle.push({
-      [Op.or]: [
-        {
-          sold: {
-            [Op.gt]: 10,
-          },
-        },
-      ],
-    });
-  }
-
-  if (resOptionPrice) {
-    resultHandle.push({ [Op.or]: resOptionPrice });
-  }
-  if (resOptionBrand) {
-    resultHandle.push({ [Op.or]: resOptionBrand });
-  }
-
-  // console.log(resultHandle);
-  try {
-    const products = await Products.findAndCountAll({
-      where: {
-        [Op.and]: resultHandle,
-      },
-
-      order: sortPice || [],
-      limit: pagination?.limit,
-      offset: pagination?.skip,
-    });
-    res.status(200).json({
-      status: "Success",
-      data: products,
-    });
-  } catch (error) {
-    res.status(500).json({
-      status: "fail",
-      message: "Product not found",
-    });
-  }
-};
+const getPhoneProducts = returnResultProduct(BrandPhones,Phones);
+const getLaptopProducts = returnResultProduct(BrandLaptops,Laptops);
+const getTabletProducts = returnResultProduct(BrandTablets,Tablets);
+const getDesktopProducts = returnResultProduct(BrandDesktops,Desktops);
+const getAccessoriesProducts =returnResultProduct(BrandAccessories,Accessories);
 
 const getProduct = async (req, res) => {
   const { id } = req.params;
@@ -69,20 +39,8 @@ const getProduct = async (req, res) => {
     });
   }
 };
-const createProduct = async (req, res) => {
-  try {
-    const newProduct = await Products.create(req.body);
-    res.status(201).json({
-      status: "success",
-      data: newProduct,
-    });
-  } catch (error) {
-    res.status(500).json({
-      status: "fail",
-      message: error,
-    });
-  }
-};
+const createPhoneProduct = returnCreateProduct(Phones);
+
 
 const searchProduct = async (req, res) => {
   const { q } = req.query;
@@ -116,24 +74,19 @@ const searchProduct = async (req, res) => {
     });
   }
 };
-const getHotPhone = async (req, res) => {
-  try {
-    // const optionsReq = req.params;
-    const productList = await BrandPhones.findAll({
-      include :{
-        model : ProductPhones,
-      }
-    });
-    res.status(200).json({
-      status: "success",
-      data: productList,
-    });
-  } catch (error) {
-    res.status(500).json({
-      status: "fail",
-      message: error.message,
-    });
-  }
-}
+// Hot Products
+const getHotPhone = getHotProducts(BrandPhones, Phones ,StatusSales);
+const getHotLaptop = getHotProducts(BrandLaptops, Laptops ,StatusSales);
 
-module.exports = { createProduct, getProducts, getProduct, searchProduct ,getHotPhone};
+module.exports = {
+  createPhoneProduct,
+  getPhoneProducts,
+  getLaptopProducts,
+  getTabletProducts,
+  getDesktopProducts,
+  getAccessoriesProducts,
+  getProduct,
+  searchProduct,
+  getHotPhone,
+  getHotLaptop,
+};

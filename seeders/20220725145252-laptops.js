@@ -20,7 +20,7 @@ module.exports = {
           isHot: true,
           brand_id: 6,
           discount: "Giam gia 10%",
-          flash_sale: true,
+          status_sale: 1,
           options: '["128GB","256GB","1TB"]',
           price: 33990000,
           sold: 30,
@@ -41,7 +41,7 @@ module.exports = {
           brand_id: 2,
           isHot: false,
 
-          flash_sale: false,
+          status_sale: 2,
           options: null,
           discount: "Giam gia 500.000đ",
           price: 30990000,
@@ -63,7 +63,7 @@ module.exports = {
           brand_id: 5,
           isHot: false,
 
-          flash_sale: false,
+          status_sale: 2,
           options: '["64GB","128GB"]',
           discount: "Giam gia 300.000đ",
           price: 11000000,
@@ -85,7 +85,7 @@ module.exports = {
           brand_id: 3,
           isHot: true,
 
-          flash_sale: true,
+          status_sale: 1,
           options: null,
           discount: "Giam gia 5%",
           price: 17990000,
@@ -107,7 +107,7 @@ module.exports = {
           brand_id: 4,
           isHot: true,
 
-          flash_sale: true,
+          status_sale: 1,
           options: null,
           discount: "Giam gia 100.000đ",
           price: 7990000,
@@ -129,7 +129,7 @@ module.exports = {
           brand_id: 1,
 
           isHot: true,
-          flash_sale: false,
+          status_sale: 2,
           options: null,
           discount: "Giam gia 100.000đ",
           price: 5990000,

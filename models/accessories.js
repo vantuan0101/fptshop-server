@@ -9,9 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({BrandAccessories}) {
+    static associate({BrandAccessories , StatusSales}) {
       // define association here
       this.belongsTo(BrandAccessories, { foreignKey: "brand_id" });
+      this.belongsTo(StatusSales, { foreignKey: "status_sale" });
 
     }
   }
@@ -31,9 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue: 0,
     },
-    flash_sale: {
-      type: DataTypes.BOOLEAN,
-    },
+    
     options: {
       type: DataTypes.JSON,
     },

@@ -12,36 +12,34 @@ const {
   Accessories,
 } = require("../models");
 const { Op } = require("sequelize");
-const { getHotProducts, returnResultProduct,returnCreateProduct } = require("../Utils/ProductsServices");
+const { getHotProducts, returnGetAllProduct,returnCreateProduct,returnGetProduct } = require("../Utils/ProductsServices");
 
-const getPhoneProducts = returnResultProduct(BrandPhones,Phones);
-const getLaptopProducts = returnResultProduct(BrandLaptops,Laptops);
-const getTabletProducts = returnResultProduct(BrandTablets,Tablets);
-const getDesktopProducts = returnResultProduct(BrandDesktops,Desktops);
-const getAccessoriesProducts =returnResultProduct(BrandAccessories,Accessories);
+// Get Phone products
+const getAllPhone = returnGetAllProduct(BrandPhones,Phones);
+const getPhoneById = returnGetProduct(Phones)
 
-const getProduct = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const product = await Products.findOne({
-      where: {
-        id,
-      },
-    });
-    res.status(200).json({
-      status: "Success",
-      data: product,
-    });
-  } catch (error) {
-    res.status(500).json({
-      status: "fail",
-      message: "Product not found",
-    });
-  }
-};
+// Get Laptop products
+const getAllLaptop = returnGetAllProduct(BrandLaptops,Laptops);
+const getLaptopById = returnGetProduct(Laptops)
+
+// Get Tablet products
+const getAllTablet = returnGetAllProduct(BrandTablets,Tablets);
+const getTabletById = returnGetProduct(Tablets)
+
+// Get Desktop products
+const getAllDesktop = returnGetAllProduct(BrandDesktops,Desktops);
+const getDesktopById = returnGetProduct(Desktops)
+
+// Get accessories products
+const getAllAccessories =returnGetAllProduct(BrandAccessories,Accessories);
+const getAccessoriesById = returnGetProduct(Accessories)
+
+
+
+// Create Product
 const createPhoneProduct = returnCreateProduct(Phones);
 
-
+// Search Product
 const searchProduct = async (req, res) => {
   const { q } = req.query;
   // console.log(q);
@@ -74,19 +72,26 @@ const searchProduct = async (req, res) => {
     });
   }
 };
+
 // Hot Products
 const getHotPhone = getHotProducts(BrandPhones, Phones ,StatusSales);
 const getHotLaptop = getHotProducts(BrandLaptops, Laptops ,StatusSales);
 
 module.exports = {
   createPhoneProduct,
-  getPhoneProducts,
-  getLaptopProducts,
-  getTabletProducts,
-  getDesktopProducts,
-  getAccessoriesProducts,
-  getProduct,
   searchProduct,
   getHotPhone,
   getHotLaptop,
+  // Get all
+  getAllPhone,
+  getAllLaptop,
+  getAllTablet,
+  getAllDesktop,
+  getAllAccessories,
+  // Get by id
+  getPhoneById,
+  getLaptopById,
+  getTabletById,
+  getDesktopById,
+  getAccessoriesById
 };

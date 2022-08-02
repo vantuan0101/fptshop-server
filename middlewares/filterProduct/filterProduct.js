@@ -5,7 +5,8 @@ const filterProduct = async (req, res, next) => {
   const params = req.query;
   const checkPrice = Object.keys(params).length === 0;
   // console.log(params);
-  if (!checkPrice ) {
+  let resultHandle = [];
+  if (!checkPrice) {
     // Sort By Range Price
     if (params["muc-gia"]) {
       const optionPrice = params["muc-gia"]?.split(",");
@@ -28,13 +29,24 @@ const filterProduct = async (req, res, next) => {
 
         return res;
       }, []);
-      req.rangePrice = resOptionPrice;
+      resultHandle.push({ [Op.or]: resOptionPrice });
+      // req.rangePrice = resOptionPrice;
     }
-    // sort = 'ban-chay-nhat' order : [] , if sort desc , asc order : [['price', sort]]   
-    if (params.sort == "ban-chay-nhat" || !params.sort) {
-      req.sortPice = []
-    }else {
-      req.sortPice  = [["price", `${params.sort}`]] 
+
+    // sort = 'ban-chay-nhat' thi where sold > 10 va order : [] , if sort desc , asc order : [['price', sort]]
+
+    if (params.sort == "ban-chay-nhat") {
+      resultHandle.push({
+        [Op.or]: [
+          {
+            sold: {
+              [Op.gt]: 10,
+            },
+          },
+        ],
+      });
+    } else if (params.sort == "asc" || params.sort == "desc") {
+      req.sortPice = [["price", `${params.sort}`]];
     }
 
     // Sort By Brand
@@ -46,23 +58,25 @@ const filterProduct = async (req, res, next) => {
         res.push({ brand: name });
         return res;
       }, []);
-      req.rangeBrand = resBrand;
+      resultHandle.push({ [Op.or]: resBrand });
+      // req.rangeBrand = resBrand;
       // console.log(resBrand);
     }
-   
+    // pagination
     if (params["trang"] || params.limit) {
       // can get product without page
       // can't get product without limit
       // get product with limit and page -> pagination
       const limit = params.limit * 1 || 10;
       const pagination = params["trang"] * 1 || null;
-      const skip = pagination ?  pagination * limit -limit : null; 
+      const skip = pagination ? pagination * limit - limit : null;
       // console.log(limit,pagination,skip);
       req.page = { skip, limit };
     } else {
       req.page = { skip: null, limit: null };
     }
   }
+  req.resultHandle = resultHandle;
   next();
   // if(params["muc-gia"] || params.sort || params["hang-san-xuat"] || params["trang"] || params.limit) {
   // }else{

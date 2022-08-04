@@ -1,11 +1,11 @@
-const { BrandPhones, Phones } = require("../models");
+const { BrandPhones, Phones } = require("../../../models");
 const {
   returnGetAllProduct,
   returnCreateProduct,
   returnGetProduct,
   returnUpdateProduct,
   returnDeleteProduct,
-} = require("../Utils/ProductsServices");
+} = require("../../../Utils/ProductsServices");
 
 // Get Phone products
 const getAllPhone = returnGetAllProduct(BrandPhones, Phones);

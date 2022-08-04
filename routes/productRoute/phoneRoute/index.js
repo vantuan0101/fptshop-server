@@ -3,7 +3,8 @@ const {
   getPhoneById,
   createPhoneProduct,
   updatePhoneProduct,
-} = require("../../../controllers/productController");
+} = require("../../../controllers/ProductController");
+
 const {
   filterProduct,
 } = require("../../../middlewares/filterProduct/filterProduct");

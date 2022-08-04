@@ -1,7 +1,12 @@
-const { getDesktopById, getAllDesktop } = require('../../../controllers/productController');
-const { filterProduct } = require('../../../middlewares/filterProduct/filterProduct');
+const {
+  getDesktopById,
+  getAllDesktop,
+} = require("../../../controllers/ProductController");
+const {
+  filterProduct,
+} = require("../../../middlewares/filterProduct/filterProduct");
 
-const desktopRouter = require('express').Router();
+const desktopRouter = require("express").Router();
 
 desktopRouter.get("/desktop", filterProduct, getAllDesktop);
 desktopRouter.route("/desktop/:id").get(getDesktopById);

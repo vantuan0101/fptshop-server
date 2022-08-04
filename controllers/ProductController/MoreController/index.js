@@ -1,5 +1,10 @@
-const { BrandPhones, Phones, BrandLaptops, Laptops } = require("../../models");
-const { getHotProducts } = require("../Utils/ProductsServices");
+const {
+  BrandPhones,
+  Phones,
+  BrandLaptops,
+  Laptops,
+} = require("../../../models");
+const { getHotProducts } = require("../../../Utils/ProductsServices");
 // Search Product
 const searchProduct = async (req, res) => {
   const { q } = req.query;
@@ -35,8 +40,8 @@ const searchProduct = async (req, res) => {
 };
 
 // Hot Products
-const getHotPhone = getHotProducts(BrandPhones, Phones, StatusSales);
-const getHotLaptop = getHotProducts(BrandLaptops, Laptops, StatusSales);
+const getHotPhone = getHotProducts(BrandPhones, Phones);
+const getHotLaptop = getHotProducts(BrandLaptops, Laptops);
 
 module.exports = {
   searchProduct,

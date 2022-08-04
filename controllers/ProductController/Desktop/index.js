@@ -4,8 +4,8 @@ const {
   returnGetProduct,
   returnUpdateProduct,
   returnDeleteProduct,
-} = require("../Utils/ProductsServices");
-const { Desktops, BrandDesktops } = require("../models");
+} = require("../../../Utils/ProductsServices");
+const { Desktops, BrandDesktops } = require("../../../models");
 // Get Desktop products
 const getAllDesktop = returnGetAllProduct(BrandDesktops, Desktops);
 const getDesktopById = returnGetProduct(Desktops);

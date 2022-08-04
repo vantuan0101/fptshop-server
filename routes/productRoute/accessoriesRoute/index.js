@@ -1,7 +1,7 @@
 const {
   getAllAccessories,
   getAccessoriesById,
-} = require("../../../controllers/productController");
+} = require("../../../controllers/ProductController");
 const {
   filterProduct,
 } = require("../../../middlewares/filterProduct/filterProduct");

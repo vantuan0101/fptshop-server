@@ -3,6 +3,7 @@ const {
   returnCreateProduct,
   returnGetProduct,
   returnUpdateProduct,
+  returnDeleteProduct,
 } = require("./CRUDServices");
 const { getHotProducts } = require("./MoreServices");
 
@@ -11,5 +12,6 @@ module.exports = {
   returnCreateProduct,
   returnGetProduct,
   getHotProducts,
-  returnUpdateProduct
+  returnUpdateProduct,
+  returnDeleteProduct,
 };

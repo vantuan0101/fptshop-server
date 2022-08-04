@@ -4,8 +4,8 @@ const {
   returnGetProduct,
   returnUpdateProduct,
   returnDeleteProduct,
-} = require("../Utils/ProductsServices");
-const { Laptops, BrandLaptops } = require("../models");
+} = require("../../../Utils/ProductsServices");
+const { Laptops, BrandLaptops } = require("../../../models");
 // Get Tablet products
 const getAllTablet = returnGetAllProduct(BrandLaptops, Laptops);
 const getTabletById = returnGetProduct(Laptops);

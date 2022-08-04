@@ -29,13 +29,7 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue: 0,
       },
-      status_sale: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "StatusSales",
-          key: "id",
-        },
-      },
+      
       options: {
         type: Sequelize.JSON,
       },

@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Tablets extends Model {
     /**
@@ -9,59 +7,60 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({BrandTablets , StatusSales}) {
+    static associate({ BrandTablets }) {
       // define association here
       this.belongsTo(BrandTablets, { foreignKey: "brand_id" });
-      this.belongsTo(StatusSales, { foreignKey: "status_sale" });
-
     }
   }
-  Tablets.init({
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
+  Tablets.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      brand: {
+        type: DataTypes.STRING,
+      },
+
+      isHot: {
+        type: DataTypes.BOOLEAN,
+      },
+      discount: {
+        type: DataTypes.STRING,
+        defaultValue: 0,
+      },
+
+      options: {
+        type: DataTypes.JSON,
+      },
+      price: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      sold: {
+        type: DataTypes.BIGINT,
+      },
+      gift_online: {
+        type: DataTypes.BOOLEAN,
+      },
+      thumbnail: {
+        type: DataTypes.STRING,
+      },
+      color: {
+        type: DataTypes.STRING,
+      },
+      image: {
+        type: DataTypes.JSON,
+        // defaultValue: "https://via.placeholder.com/150",
+      },
+      payment: {
+        type: DataTypes.STRING,
+      },
     },
-    brand: {
-      type: DataTypes.STRING,
-    },
-    
-    isHot :{
-      type: DataTypes.BOOLEAN,
-    },
-    discount: {
-      type: DataTypes.STRING,
-      defaultValue: 0,
-    },
-    
-    options: {
-      type: DataTypes.JSON,
-    },
-    price: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    sold: {
-      type: DataTypes.BIGINT,
-    },
-    gift_online: {
-      type: DataTypes.BOOLEAN,
-    },
-    thumbnail: {
-      type: DataTypes.STRING,
-    },
-    color: {
-      type: DataTypes.STRING,
-    },
-    image: {
-      type: DataTypes.JSON,
-      // defaultValue: "https://via.placeholder.com/150",
-    },
-    payment: {
-      type: DataTypes.STRING,
-    },
-  }, {
-    sequelize,
-    modelName: 'Tablets',
-  });
+    {
+      sequelize,
+      modelName: "Tablets",
+    }
+  );
   return Tablets;
 };

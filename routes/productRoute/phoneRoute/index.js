@@ -2,6 +2,7 @@ const {
   getAllPhone,
   getPhoneById,
   createPhoneProduct,
+  updatePhoneProduct,
 } = require("../../../controllers/productController");
 const {
   filterProduct,
@@ -11,7 +12,16 @@ const { uploadImage } = require("../../../middlewares/upload/uploadImage");
 const phoneRouter = require("express").Router();
 
 phoneRouter.get("/dien-thoai", filterProduct, getAllPhone);
-phoneRouter.route("/dien-thoai/:id").get(getPhoneById);
+phoneRouter
+  .route("/dien-thoai/:id")
+  .get(getPhoneById)
+  .patch(
+    uploadImage("products/phones", [
+      { name: "thumbnail" },
+      { name: "image", maxCount: 12 },
+    ]),
+    updatePhoneProduct
+  );
 phoneRouter
   .route("/dien-thoai")
   .post(

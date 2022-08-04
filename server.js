@@ -11,6 +11,7 @@ const app = express();
 dotenv.config({ path: "./config.env" });
 
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors({credentials :true , origin : 'http://localhost:3000'}));

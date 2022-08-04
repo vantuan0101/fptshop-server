@@ -3,7 +3,6 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 const base_url = process.env.BASE_URL;
 
-
 // Get Hot Products
 const getHotProducts =
   (ModelBrands, Products, StatusSales) => async (req, res) => {
@@ -33,66 +32,65 @@ const getHotProducts =
     }
   };
 
+// Get All Product by Catelogy
 
-  // Get All Product by Catelogy
+// const handleResultFilterProduct = async (Brands, Products, req) => {
+//   const sortPice = req.sortPice;
+//   const pagination = req.page;
+//   const resultHandle = req.resultHandle
+//   // console.log(req.params);
+//   // let resultHandle = [];
+//   // if (req.query.sort == "ban-chay-nhat") {
+//   //   resultHandle.push({
+//   //     [Op.or]: [
+//   //       {
+//   //         sold: {
+//   //           [Op.gt]: 10,
+//   //         },
+//   //       },
+//   //     ],
+//   //   });
+//   // }
 
-  // const handleResultFilterProduct = async (Brands, Products, req) => {
-  //   const sortPice = req.sortPice;
-  //   const pagination = req.page;
-  //   const resultHandle = req.resultHandle
-  //   // console.log(req.params);
-  //   // let resultHandle = [];
-  //   // if (req.query.sort == "ban-chay-nhat") {
-  //   //   resultHandle.push({
-  //   //     [Op.or]: [
-  //   //       {
-  //   //         sold: {
-  //   //           [Op.gt]: 10,
-  //   //         },
-  //   //       },
-  //   //     ],
-  //   //   });
-  //   // }
-  
-  //   // if (resOptionPrice) {
-  //   //   resultHandle.push({ [Op.or]: resOptionPrice });
-  //   // }
-  //   // if (resOptionBrand) {
-  //   //   resultHandle.push({ [Op.or]: resOptionBrand });
-  //   // }
-  //   // console.log(resultHandle);
-  //   const products = await Brands.findAndCountAll({
-  //     include: {
-  //       model: Products,
-  
-  //       where: {
-  //         [Op.and]: resultHandle,
-  //       },
-  
-  //       order: sortPice || [],
-  //       limit: pagination?.limit,
-  //       offset: pagination?.skip,
-  //     },
-  //   });
-  //   return products;
-  // };
+//   // if (resOptionPrice) {
+//   //   resultHandle.push({ [Op.or]: resOptionPrice });
+//   // }
+//   // if (resOptionBrand) {
+//   //   resultHandle.push({ [Op.or]: resOptionBrand });
+//   // }
+//   // console.log(resultHandle);
+//   const products = await Brands.findAndCountAll({
+//     include: {
+//       model: Products,
+
+//       where: {
+//         [Op.and]: resultHandle,
+//       },
+
+//       order: sortPice || [],
+//       limit: pagination?.limit,
+//       offset: pagination?.skip,
+//     },
+//   });
+//   return products;
+// };
 const returnGetAllProduct = (BrandName, ProductName) => async (req, res) => {
   try {
     const sortPice = req.sortPice;
     const pagination = req.page;
-    const resultHandle = req.resultHandle
-    const products = await BrandName.findAndCountAll({
+    const resultHandle = req.resultHandle;
+    const products = await ProductName.findAndCountAll({
       include: {
-        model: ProductName,
-  
-        where: {
-          [Op.and]: resultHandle,
-        },
-  
-        order: sortPice || [],
-        limit: pagination?.limit,
-        offset: pagination?.skip,
+        model: BrandName,
       },
+      where: {
+        [Op.and]: resultHandle,
+      },
+      raw : true,
+
+      order: sortPice || [],
+      limit: pagination?.limit,
+      offset: pagination?.skip,
     });
     // const products = await handleResultFilterProduct(BrandName, ProductName, req);
     res.status(200).json({
@@ -164,5 +162,5 @@ module.exports = {
   getHotProducts,
   returnGetAllProduct,
   returnCreateProduct,
-  returnGetProduct
+  returnGetProduct,
 };

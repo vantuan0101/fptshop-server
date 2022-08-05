@@ -1,7 +1,7 @@
 const {
+  searchProduct,
   getHotPhone,
   getHotLaptop,
-  searchProduct,
 } = require("../../../controllers/ProductController");
 
 const moreRouter = require("express").Router();

@@ -5,19 +5,19 @@ const {
   returnUpdateProduct,
   returnDeleteProduct,
 } = require("../../../Utils/ProductsServices");
-const { Laptops, BrandLaptops } = require("../../../models");
+const { Tablets, BrandTablets } = require("../../../models");
 // Get Tablet products
-const getAllTablet = returnGetAllProduct(BrandLaptops, Laptops);
-const getTabletById = returnGetProduct(Laptops);
+const getAllTablet = returnGetAllProduct(BrandTablets, Tablets);
+const getTabletById = returnGetProduct(Tablets);
 
 // Create Product
-const createTabletProduct = returnCreateProduct(Laptops);
+const createTabletProduct = returnCreateProduct(Tablets);
 
 // Update Tablet Product
-const updateTabletProduct = returnUpdateProduct(Laptops);
+const updateTabletProduct = returnUpdateProduct(Tablets);
 
 // Delete Tablet Product
-const deleteTabletProduct = returnDeleteProduct(Laptops);
+const deleteTabletProduct = returnDeleteProduct(Tablets);
 
 module.exports = {
   getAllTablet,

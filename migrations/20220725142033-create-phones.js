@@ -24,6 +24,8 @@ module.exports = {
       },
       isHot: {
         type: Sequelize.BOOLEAN,
+        defaultValue : false,
+
       },
       discount: {
         type: Sequelize.STRING,
@@ -42,12 +44,13 @@ module.exports = {
       },
       gift_online: {
         type: Sequelize.BOOLEAN,
+        defaultValue : false,
       },
       thumbnail: {
         type: Sequelize.STRING,
       },
       color: {
-        type: Sequelize.STRING,
+        type: Sequelize.JSON,
       },
       image: {
         type: Sequelize.JSON,

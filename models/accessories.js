@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       color: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
       },
       image: {
         type: DataTypes.JSON,

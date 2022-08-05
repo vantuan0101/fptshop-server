@@ -1,12 +1,12 @@
-'use strict';
+"use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Accessories', {
+    await queryInterface.createTable("Accessories", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       brand_id: {
         type: Sequelize.INTEGER,
@@ -22,14 +22,16 @@ module.exports = {
       brand: {
         type: Sequelize.STRING,
       },
-      isHot :{
+      isHot: {
         type: Sequelize.BOOLEAN,
+        defaultValue : false,
+
       },
       discount: {
         type: Sequelize.STRING,
         defaultValue: 0,
       },
-      
+
       options: {
         type: Sequelize.JSON,
       },
@@ -42,12 +44,14 @@ module.exports = {
       },
       gift_online: {
         type: Sequelize.BOOLEAN,
+        defaultValue : false,
+
       },
       thumbnail: {
         type: Sequelize.STRING,
       },
       color: {
-        type: Sequelize.STRING,
+        type: Sequelize.JSON,
       },
       image: {
         type: Sequelize.JSON,
@@ -57,15 +61,15 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Accessories');
-  }
+    await queryInterface.dropTable("Accessories");
+  },
 };

@@ -14,7 +14,7 @@ const uploadImage = (type, fields) => {
   const upload = multer({
     storage: storage,
     fileFilter: function (req, file, cb) {
-      console.log(file);
+      // console.log(file);
       if (file.mimetype.startsWith("image")) {
         cb(null, true);
       } else {

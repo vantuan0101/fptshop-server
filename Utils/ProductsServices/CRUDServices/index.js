@@ -1,4 +1,4 @@
-const { Op, where } = require("sequelize");
+const { Op } = require("sequelize");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 const base_url = process.env.BASE_URL;
@@ -70,16 +70,22 @@ const returnGetProduct = (ProductName) => async (req, res) => {
 const returnCreateProduct = (ProductName) => async (req, res) => {
   try {
     const fileImg = req.files;
-    const listImage = getPathImage(fileImg.image);
-    const thumbnail = getPathImage(fileImg.thumbnail).toString();
+    const thumbnail = getPathImage(fileImg?.thumbnail).toString();
+    const listImage = getPathImage(fileImg?.image);
     // console.log(listImage);
     // console.log(thumbnail);
     const dataProduct = req.body;
     // console.log(dataProduct);
+    // const { options ,color} = req.body;
+    const options = dataProduct?.options?.split(",");
+    const color = dataProduct?.color?.split(",");
+    console.log(options, color);
     const newProduct = await ProductName.create({
       ...dataProduct,
       thumbnail,
       image: listImage,
+      options: options,
+      // color: color,
     });
     res.status(201).json({
       status: "success",
@@ -99,11 +105,17 @@ const returnUpdateProduct = (ProductName) => async (req, res) => {
   const { id } = req.params;
 
   const fileImg = req.files;
-  const thumbnail = getPathImage(fileImg.thumbnail)?.toString();
-  const listImage = getPathImage(fileImg.image);
+  // console.log(fileImg);
+  const thumbnail = getPathImage(fileImg?.thumbnail)?.toString();
+  const listImage = getPathImage(fileImg?.image);
   // console.log(thumbnail);
   // console.log(listImage);
   const dataProduct = req.body;
+  // console.log(dataProduct);
+  const options = dataProduct?.options?.split(",");
+  const color = dataProduct?.color?.split(",");
+  // console.log(options, color);
+
   try {
     // console.log(dataProduct);
     const newProduct = await ProductName.update(
@@ -111,6 +123,8 @@ const returnUpdateProduct = (ProductName) => async (req, res) => {
         ...dataProduct,
         thumbnail: thumbnail,
         image: listImage,
+        options: options,
+        // color: color,
       },
       {
         where: {

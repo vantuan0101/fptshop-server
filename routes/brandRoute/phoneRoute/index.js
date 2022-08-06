@@ -11,7 +11,7 @@ const phoneRouter = require("express").Router();
 
 phoneRouter.route("/dien-thoai").post(createPhoneBrand).get(getAllPhoneBrand);
 phoneRouter
-  .route("/dien-thoai/:id")
+  .route("/dien-thoai/:name")
   .get(getOnePhoneBrand)
   .patch(updatePhoneBrand)
   .delete(deletePhoneBrand);

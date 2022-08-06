@@ -68,20 +68,23 @@ const returnGetProduct = (ProductName) => async (req, res) => {
 // Create Product
 
 const returnCreateProduct = (ProductName) => async (req, res) => {
+  const fileImg = req.files;
+  const thumbnail = getPathImage(fileImg?.thumbnail)?.toString();
+  const listImage = getPathImage(fileImg?.image);
+  // console.log(listImage);
+  // console.log(thumbnail);
+  const dataProduct = req.body;
+  console.log(dataProduct);
+  const color = dataProduct?.color?.split(",");
+  const options = dataProduct?.options?.split(",");
+  // console.log(color);
   try {
-    const fileImg = req.files;
-    const thumbnail = getPathImage(fileImg?.thumbnail)?.toString();
-    const listImage = getPathImage(fileImg?.image);
-    // console.log(listImage);
-    // console.log(thumbnail);
-    const dataProduct = req.body;
-
-    const color = dataProduct?.color?.split(",");
     const newProduct = await ProductName.create({
       ...dataProduct,
       thumbnail,
       image: listImage,
-      color: color,
+      color,
+      options
     });
     res.status(201).json({
       status: "success",
@@ -107,9 +110,11 @@ const returnUpdateProduct = (ProductName) => async (req, res) => {
   // console.log(thumbnail);
   // console.log(listImage);
   const dataProduct = req.body;
-  // console.log(dataProduct);
+  console.log(dataProduct);
   const color = dataProduct?.color?.split(",");
-  // console.log(options, color);
+  const options = dataProduct?.options?.split(",");
+
+  console.log(color,options);
 
   try {
     // console.log(dataProduct);
@@ -119,6 +124,7 @@ const returnUpdateProduct = (ProductName) => async (req, res) => {
         thumbnail: thumbnail,
         image: listImage,
         color: color,
+        options,
       },
       {
         where: {

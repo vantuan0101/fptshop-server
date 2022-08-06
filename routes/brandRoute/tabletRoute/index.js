@@ -13,7 +13,7 @@ tabletRouter
   .post(createTabletBrand)
   .get(getAllTabletBrand);
 tabletRouter
-  .route("/may-tinh-bang/:id")
+  .route("/may-tinh-bang/:name")
   .get(getOneTabletBrand)
   .patch(updateTabletBrand)
   .delete(deleteTabletBrand);

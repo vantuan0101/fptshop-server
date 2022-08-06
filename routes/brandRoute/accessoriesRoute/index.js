@@ -13,7 +13,7 @@ accessoriesRouter
   .post(createAccessoriesBrand)
   .get(getAllAccessoriesBrand);
 accessoriesRouter
-  .route("/phu-kien/:id")
+  .route("/phu-kien/:name")
   .get(getOneAccessoriesBrand)
   .patch(updateAccessoriesBrand)
   .delete(deleteAccessoriesBrand);

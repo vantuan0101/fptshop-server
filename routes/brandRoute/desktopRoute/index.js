@@ -13,7 +13,7 @@ desktopRouter
   .post(createDesktopBrand)
   .get(getAllDesktopBrand);
 desktopRouter
-  .route("/desktops/:id")
+  .route("/desktops/:name")
   .get(getOneDesktopBrand)
   .patch(updateDesktopBrand)
   .delete(deleteDesktopBrand);

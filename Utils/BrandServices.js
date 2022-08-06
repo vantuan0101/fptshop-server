@@ -64,9 +64,9 @@ const returnGetAllBrand = (BrandName) => async (req, res) => {
 };
 const returnGetOneBrand = (BrandName) => async (req, res) => {
   try {
-    const { id } = req.params;
+    const { name } = req.params;
     const result = await BrandName.findOne({
-      where: { id },
+      where: { name },
     });
     res.status(200).json({
       status: "success",

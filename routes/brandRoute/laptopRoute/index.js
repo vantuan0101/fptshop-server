@@ -13,7 +13,7 @@ laptopRouter
   .post(createLaptopBrand)
   .get(getAllLaptopBrand);
 laptopRouter
-  .route("/laptops/:id")
+  .route("/laptops/:name")
   .get(getOneLaptopBrand)
   .patch(updateLaptopBrand)
   .delete(deleteLaptopBrand);

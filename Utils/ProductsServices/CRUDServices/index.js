@@ -74,16 +74,18 @@ const returnCreateProduct = (ProductName) => async (req, res) => {
   // console.log(listImage);
   // console.log(thumbnail);
   const dataProduct = req.body;
-  console.log(dataProduct);
+  // console.log(dataProduct);
+  // let color = (dataProduct?.color);
+  // let options = (dataProduct?.options);
   const color = dataProduct?.color?.split(",");
   const options = dataProduct?.options?.split(",");
-  // console.log(color);
+  // console.log(typeof(dataProduct?.color),color);
   try {
     const newProduct = await ProductName.create({
       ...dataProduct,
       thumbnail,
       image: listImage,
-      color,
+      color ,
       options
     });
     res.status(201).json({

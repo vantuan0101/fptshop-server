@@ -13,7 +13,8 @@ const { uploadImage } = require("../../../middlewares/upload/uploadImage");
 const desktopRouter = require("express").Router();
 
 desktopRouter
-  .get("/desktop", filterProduct, getAllDesktop)
+  .route("/desktop")
+  .get(filterProduct, getAllDesktop)
   .post(
     uploadImage("products/desktops", [
       { name: "thumbnail" },

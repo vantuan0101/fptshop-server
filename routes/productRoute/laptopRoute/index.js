@@ -13,15 +13,6 @@ const { uploadImage } = require("../../../middlewares/upload/uploadImage");
 const laptopRouter = require("express").Router();
 
 laptopRouter
-  .get("/laptop", filterProduct, getAllLaptop)
-  .post(
-    uploadImage("products/laptops", [
-      { name: "thumbnail" },
-      { name: "image", maxCount: 12 },
-    ]),
-    createLaptopProduct
-  );
-laptopRouter
   .route("/laptop/:id")
   .get(getLaptopById)
   .patch(
@@ -32,5 +23,14 @@ laptopRouter
     updateLaptopProduct
   )
   .delete(deleteLaptopProduct);
-
+laptopRouter
+  .route("/laptop")
+  .get(filterProduct, getAllLaptop)
+  .post(
+    uploadImage("products/laptops", [
+      { name: "thumbnail" },
+      { name: "image", maxCount: 12 },
+    ]),
+    createLaptopProduct
+  );
 module.exports = { laptopRouter };

@@ -13,7 +13,8 @@ const { uploadImage } = require("../../../middlewares/upload/uploadImage");
 const accessoriesRouter = require("express").Router();
 
 accessoriesRouter
-  .get("/phu-kien", filterProduct, getAllAccessories)
+.route("/phu-kien")
+  .get(filterProduct, getAllAccessories)
   .post(
     uploadImage("products/phu-kien", [
       { name: "thumbnail" },

@@ -16,52 +16,102 @@ module.exports = (sequelize, DataTypes) => {
 
     }
   }
-  Laptops.init({
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    brand: {
-      type: DataTypes.STRING,
-    },
+  // Laptops.init({
+  //   name: {
+  //     type: DataTypes.STRING,
+  //     allowNull: false,
+  //   },
+  //   brand: {
+  //     type: DataTypes.STRING,
+  //   },
     
-    isHot :{
-      type: DataTypes.BOOLEAN,
-    },
-    discount: {
-      type: DataTypes.STRING,
-      defaultValue: 0,
-    },
+  //   isHot :{
+  //     type: DataTypes.BOOLEAN,
+  //   },
+  //   discount: {
+  //     type: DataTypes.STRING,
+  //     defaultValue: 0,
+  //   },
     
-    options: {
-      type: DataTypes.JSON,
+  //   options: {
+  //     type: DataTypes.JSON,
+  //   },
+  //   price: {
+  //     type: DataTypes.INTEGER,
+  //     allowNull: false,
+  //   },
+  //   sold: {
+  //     type: DataTypes.BIGINT,
+  //   },
+  //   gift_online: {
+  //     type: DataTypes.BOOLEAN,
+  //   },
+  //   thumbnail: {
+  //     type: DataTypes.STRING,
+  //   },
+  //   color: {
+  //     type: DataTypes.STRING,
+  //   },
+  //   image: {
+  //     type: DataTypes.JSON,
+  //     // defaultValue: "https://via.placeholder.com/150",
+  //   },
+  //   payment: {
+  //     type: DataTypes.STRING,
+  //   },
+  // }, {
+  //   sequelize,
+  //   modelName: 'Laptops',
+  // });
+  Laptops.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      
+      brand: {
+        type: DataTypes.STRING,
+      },
+      isHot: {
+        type: DataTypes.BOOLEAN,
+      },
+      discount: {
+        type: DataTypes.STRING,
+        defaultValue: 0,
+      },
+      
+      options: {
+        type: DataTypes.JSON,
+      },
+      price: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      sold: {
+        type: DataTypes.BIGINT,
+      },
+      gift_online: {
+        type: DataTypes.BOOLEAN,
+      },
+      thumbnail: {
+        type: DataTypes.STRING,
+      },
+      color: {
+        type: DataTypes.JSON,
+      },
+      image: {
+        type: DataTypes.JSON,
+        // defaultValue: "https://via.placeholder.com/150",
+      },
+      payment: {
+        type: DataTypes.STRING,
+      },
     },
-    price: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    sold: {
-      type: DataTypes.BIGINT,
-    },
-    gift_online: {
-      type: DataTypes.BOOLEAN,
-    },
-    thumbnail: {
-      type: DataTypes.STRING,
-    },
-    color: {
-      type: DataTypes.STRING,
-    },
-    image: {
-      type: DataTypes.JSON,
-      // defaultValue: "https://via.placeholder.com/150",
-    },
-    payment: {
-      type: DataTypes.STRING,
-    },
-  }, {
-    sequelize,
-    modelName: 'Laptops',
-  });
+    {
+      sequelize,
+      modelName: "Laptops",
+    }
+  );
   return Laptops;
 };

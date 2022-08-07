@@ -1,4 +1,4 @@
-const { Phones, Desktops, Tablets } = require("../models");
+const { Phones, Desktops, Tablets, Laptops } = require("../models");
 
 const getProductSale = async (Product) => {
   const product = await Product.findAll({
@@ -14,7 +14,8 @@ const getHotSales = async (req, res) => {
     const phones = await getProductSale(Phones);
     const tablets = await getProductSale(Tablets);
     const desktops = await getProductSale(Desktops);
-    const listProduct = [...phones, ...tablets, ...desktops];
+    const laptops = await getProductSale(Laptops);
+    const listProduct = [...phones, ...tablets, ...desktops, ...laptops];
     res.status(200).json({
       status: "Success",
       data: listProduct,

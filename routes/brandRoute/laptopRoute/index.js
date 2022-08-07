@@ -9,11 +9,11 @@ const {
 const laptopRouter = require("express").Router();
 
 laptopRouter
-  .route("/laptops")
+  .route("/laptop")
   .post(createLaptopBrand)
   .get(getAllLaptopBrand);
 laptopRouter
-  .route("/laptops/:name")
+  .route("/laptop/:name")
   .get(getOneLaptopBrand)
   .patch(updateLaptopBrand)
   .delete(deleteLaptopBrand);

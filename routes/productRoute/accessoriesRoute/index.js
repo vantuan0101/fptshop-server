@@ -4,6 +4,8 @@ const {
   createAccessoriesProduct,
   updateAccessoriesProduct,
   deleteAccessoriesProduct,
+  deleteImageAccessories,
+  updateImageAccessories,
 } = require("../../../controllers/ProductController");
 const {
   filterProduct,
@@ -13,13 +15,14 @@ const { uploadImage } = require("../../../middlewares/upload/uploadImage");
 const accessoriesRouter = require("express").Router();
 
 accessoriesRouter
-.route("/phu-kien")
+  .route("/phu-kien")
   .get(filterProduct, getAllAccessories)
   .post(
     uploadImage("products/phu-kien", [
       { name: "thumbnail" },
       { name: "image", maxCount: 12 },
     ]),
+    updateImageAccessories,
     createAccessoriesProduct
   );
 accessoriesRouter
@@ -32,6 +35,6 @@ accessoriesRouter
     ]),
     updateAccessoriesProduct
   )
-  .delete(deleteAccessoriesProduct);
+  .delete(deleteImageAccessories, deleteAccessoriesProduct);
 
 module.exports = { accessoriesRouter };

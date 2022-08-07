@@ -4,6 +4,8 @@ const {
   createLaptopProduct,
   updateLaptopProduct,
   deleteLaptopProduct,
+  deleteImageLaptop,
+  updateImageLaptop,
 } = require("../../../controllers/ProductController");
 const {
   filterProduct,
@@ -20,9 +22,10 @@ laptopRouter
       { name: "thumbnail" },
       { name: "image", maxCount: 12 },
     ]),
+    updateImageLaptop,
     updateLaptopProduct
   )
-  .delete(deleteLaptopProduct);
+  .delete(deleteImageLaptop, deleteLaptopProduct);
 laptopRouter
   .route("/laptop")
   .get(filterProduct, getAllLaptop)

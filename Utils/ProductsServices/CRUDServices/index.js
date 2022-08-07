@@ -1,17 +1,7 @@
 const { Op } = require("sequelize");
-const dotenv = require("dotenv");
-dotenv.config({ path: "./config.env" });
-const base_url = process.env.BASE_URL;
-
-// Function get path image
-const getPathImage = (fileImg) => {
-  let listImg = fileImg?.reduce((acc, cur) => {
-    acc.push(base_url + cur.path);
-    return acc;
-  }, []);
-  return listImg;
-};
-// ------------------------------------------------------------
+const {
+  getPathImage,
+} = require("../../../middlewares/services/imageCommonService");
 
 // Get All Product by Catelogy
 const returnGetAllProduct = (BrandName, ProductName) => async (req, res) => {
@@ -77,16 +67,18 @@ const returnCreateProduct = (ProductName) => async (req, res) => {
   // console.log(dataProduct);
   // let color = (dataProduct?.color);
   // let options = (dataProduct?.options);
-  const color = dataProduct?.color?.split(",");
-  const options = dataProduct?.options?.split(",");
+  const color =
+    dataProduct?.color !== "" ? dataProduct?.color?.split(",") : null;
+  const options =
+    dataProduct?.options !== "" ? dataProduct?.options?.split(",") : null;
   // console.log(typeof(dataProduct?.color),color);
   try {
     const newProduct = await ProductName.create({
       ...dataProduct,
       thumbnail,
       image: listImage,
-      color ,
-      options
+      color,
+      options,
     });
     res.status(201).json({
       status: "success",
@@ -112,11 +104,13 @@ const returnUpdateProduct = (ProductName) => async (req, res) => {
   // console.log(thumbnail);
   // console.log(listImage);
   const dataProduct = req.body;
-  console.log(dataProduct);
-  const color = dataProduct?.color?.split(",");
-  const options = dataProduct?.options?.split(",");
+  // console.log(dataProduct);
+  const color =
+  dataProduct?.color !== "" ? dataProduct?.color?.split(",") : null;
+const options =
+  dataProduct?.options !== "" ? dataProduct?.options?.split(",") : null;
 
-  console.log(color,options);
+  // console.log(color, options);
 
   try {
     // console.log(dataProduct);
@@ -147,6 +141,7 @@ const returnUpdateProduct = (ProductName) => async (req, res) => {
 };
 
 // Delete Product
+
 const returnDeleteProduct = (ProductName) => async (req, res) => {
   const { id } = req.params;
   try {

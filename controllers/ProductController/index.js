@@ -4,6 +4,9 @@ const {
   createPhoneProduct,
   updatePhoneProduct,
   deletePhoneProduct,
+  deleteImagePhone,
+  updateImagePhone
+  
 } = require("./Phones");
 const {
   getAllTablet,
@@ -11,6 +14,8 @@ const {
   createTabletProduct,
   updateTabletProduct,
   deleteTabletProduct,
+  deleteImageTablet,
+  updateImageTablet
 } = require("./Tablet");
 
 const {
@@ -19,6 +24,8 @@ const {
   createLaptopProduct,
   updateLaptopProduct,
   deleteLaptopProduct,
+  deleteImageLaptop,
+  updateImageLaptop
 } = require("./Laptop");
 
 const {
@@ -27,6 +34,8 @@ const {
   createDesktopProduct,
   updateDesktopProduct,
   deleteDesktopProduct,
+  deleteImageDesktop,
+  updateImageDesktop
 } = require("./Desktop");
 const {
   getAllAccessories,
@@ -34,6 +43,8 @@ const {
   createAccessoriesProduct,
   updateAccessoriesProduct,
   deleteAccessoriesProduct,
+  deleteImageAccessories,
+  updateImageAccessories
 } = require("./Accessories");
 
 const {
@@ -48,30 +59,40 @@ module.exports = {
   createPhoneProduct,
   updatePhoneProduct,
   deletePhoneProduct,
+  deleteImagePhone,
+  updateImagePhone,
   // Tablets
   getAllTablet,
   getTabletById,
   createTabletProduct,
   updateTabletProduct,
   deleteTabletProduct,
+  deleteImageTablet,
+  updateImageTablet,
   // Laptops
   getAllLaptop,
   getLaptopById,
   createLaptopProduct,
   updateLaptopProduct,
   deleteLaptopProduct,
+  deleteImageLaptop,
+  updateImageLaptop,
   // Desktops
   getAllDesktop,
   getDesktopById,
   createDesktopProduct,
   updateDesktopProduct,
   deleteDesktopProduct,
+  deleteImageDesktop,
+  updateImageDesktop,
   // Accessories
   getAllAccessories,
   getAccessoriesById,
   createAccessoriesProduct,
   updateAccessoriesProduct,
   deleteAccessoriesProduct,
+  deleteImageAccessories,
+  updateImageAccessories,
   // More
   searchProduct,
   getHotPhone,

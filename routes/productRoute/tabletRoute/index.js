@@ -4,6 +4,8 @@ const {
   createTabletProduct,
   updateTabletProduct,
   deleteTabletProduct,
+  deleteImageTablet,
+  updateImageTablet,
 } = require("../../../controllers/ProductController");
 const {
   filterProduct,
@@ -20,6 +22,7 @@ tabletRouter
       { name: "thumbnail" },
       { name: "image", maxCount: 12 },
     ]),
+    updateImageTablet,
     createTabletProduct
   );
 tabletRouter
@@ -32,6 +35,6 @@ tabletRouter
     ]),
     updateTabletProduct
   )
-  .delete(deleteTabletProduct);
+  .delete(deleteImageTablet, deleteTabletProduct);
 
 module.exports = { tabletRouter };

@@ -4,6 +4,8 @@ const {
   createPhoneProduct,
   updatePhoneProduct,
   deletePhoneProduct,
+  deleteImagePhone,
+  updateImagePhone,
 } = require("../../../controllers/ProductController");
 
 const {
@@ -21,9 +23,10 @@ phoneRouter
       { name: "thumbnail" },
       { name: "image", maxCount: 12 },
     ]),
+    updateImagePhone,
     updatePhoneProduct
   )
-  .delete(deletePhoneProduct);
+  .delete(deleteImagePhone, deletePhoneProduct);
 phoneRouter
   .route("/dien-thoai")
   .get(filterProduct, getAllPhone)

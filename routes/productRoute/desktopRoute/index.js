@@ -4,6 +4,8 @@ const {
   createDesktopProduct,
   updateDesktopProduct,
   deleteDesktopProduct,
+  deleteImageDesktop,
+  updateImageDesktop,
 } = require("../../../controllers/ProductController");
 const {
   filterProduct,
@@ -30,8 +32,9 @@ desktopRouter
       { name: "thumbnail" },
       { name: "image", maxCount: 12 },
     ]),
+    updateImageDesktop,
     updateDesktopProduct
   )
-  .delete(deleteDesktopProduct);
+  .delete(deleteImageDesktop, deleteDesktopProduct);
 
 module.exports = { desktopRouter };

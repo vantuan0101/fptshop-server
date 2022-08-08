@@ -2,6 +2,7 @@ const { Users } = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const { getPathImage } = require("../middlewares/services/imageCommonService");
 dotenv.config({ path: "./config.env" });
 const saltRounds = 10;
 const getAllUser = async (req, res) => {
@@ -47,10 +48,12 @@ const getUserById = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
+  const fileImg = req.files;
+  const avatar = getPathImage(fileImg?.avatar)?.toString();
+  const { id } = req.params;
+  const user = req.body;
   try {
-    const { id } = req.params;
-    const user = req.body;
-    const newUser = await Users.update({ ...user }, { where: { id } });
+    const newUser = await Users.update({ ...user, avatar }, { where: { id } });
     res.status(200).json({
       status: "Success",
       data: newUser,
@@ -90,7 +93,8 @@ const handleLoging = async (req, res) => {
   if (user) {
     const result = bcrypt.compareSync(data.password, user.password);
     if (result) {
-      const { first_name, last_name, email, phone, type_user } = user;
+      const { first_name, last_name, email, phone, type_user, avatar } = user;
+      const returnUser = { first_name, last_name, email, phone, type_user, avatar }
       const newUser = { first_name, last_name, email, phone, type_user };
       const token = jwt.sign(newUser, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN,
@@ -109,7 +113,7 @@ const handleLoging = async (req, res) => {
       res.status(200).json({
         errCode: 0,
         status: "Success",
-        data: newUser,
+        data: returnUser,
         token,
       });
     } else {
@@ -131,6 +135,8 @@ const handleLoging = async (req, res) => {
 };
 
 const handleRegister = (createUser = async (req, res) => {
+  const fileImg = req.files;
+  const avatar = getPathImage(fileImg?.avatar)?.toString();
   try {
     const { first_name, last_name, email, phone, password, type_user } =
       req.body;
@@ -155,6 +161,7 @@ const handleRegister = (createUser = async (req, res) => {
       phone,
       password: hashPassword,
       type_user,
+      avatar,
     });
     res.status(200).json({
       errCode: 0,

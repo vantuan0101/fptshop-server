@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
   class Users extends Model {
     /**
@@ -31,6 +32,11 @@ module.exports = (sequelize, DataTypes) => {
       type_user: {
         type: DataTypes.STRING,
         defaultValue: "client",
+      },
+
+      avatar: {
+        type: DataTypes.STRING,
+        defaultValue: "http://localhost:3001/public/images/default/defaultavt.png",
       },
     },
 

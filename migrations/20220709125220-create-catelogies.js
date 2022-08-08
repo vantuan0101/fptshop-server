@@ -14,6 +14,9 @@ module.exports = {
       catelogy: {
         type: Sequelize.JSON
       },
+      path : {
+        type: Sequelize.STRING,
+      },
       image :{
         type: Sequelize.STRING,
       },

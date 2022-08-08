@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      
+
       brand: {
         type: DataTypes.STRING,
       },
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         defaultValue: 0,
       },
-      
+
       options: {
         type: DataTypes.JSON,
       },
@@ -45,6 +45,8 @@ module.exports = (sequelize, DataTypes) => {
       },
       thumbnail: {
         type: DataTypes.STRING,
+        defaultValue:
+          "http://localhost:3001/public/images/default/default-loading-image.png",
       },
       color: {
         type: DataTypes.JSON,

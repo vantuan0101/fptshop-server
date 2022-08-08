@@ -15,7 +15,7 @@ const { uploadImage } = require("../../../middlewares/upload/uploadImage");
 const desktopRouter = require("express").Router();
 
 desktopRouter
-  .route("/desktop")
+  .route("/desktops")
   .get(filterProduct, getAllDesktop)
   .post(
     uploadImage("products/desktops", [
@@ -25,7 +25,7 @@ desktopRouter
     createDesktopProduct
   );
 desktopRouter
-  .route("/desktop/:id")
+  .route("/desktops/:id")
   .get(getDesktopById)
   .patch(
     uploadImage("products/desktops", [

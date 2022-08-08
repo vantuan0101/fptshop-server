@@ -1,5 +1,5 @@
 "use strict";
-const { Model  } = require("sequelize");
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Catelogies extends Model {
     /**
@@ -7,9 +7,8 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate( models) {
+    static associate(models) {
       // define association here
-     
     }
   }
   Catelogies.init(
@@ -19,12 +18,14 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       catelogy: {
-        type : DataTypes.JSON,
+        type: DataTypes.JSON,
       },
-      image :{
+      path : {
         type: DataTypes.STRING,
-      }
-      
+      },
+      image: {
+        type: DataTypes.STRING,
+      },
     },
     {
       sequelize,

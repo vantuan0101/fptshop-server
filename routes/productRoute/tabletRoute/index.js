@@ -22,7 +22,6 @@ tabletRouter
       { name: "thumbnail" },
       { name: "image", maxCount: 12 },
     ]),
-    updateImageTablet,
     createTabletProduct
   );
 tabletRouter

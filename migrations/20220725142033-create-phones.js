@@ -1,4 +1,5 @@
 "use strict";
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("Phones", {
@@ -24,14 +25,13 @@ module.exports = {
       },
       isHot: {
         type: Sequelize.BOOLEAN,
-        defaultValue : false,
-
+        defaultValue: false,
       },
       discount: {
         type: Sequelize.STRING,
         defaultValue: 0,
       },
-      
+
       options: {
         type: Sequelize.JSON,
       },
@@ -44,10 +44,12 @@ module.exports = {
       },
       gift_online: {
         type: Sequelize.BOOLEAN,
-        defaultValue : false,
+        defaultValue: false,
       },
       thumbnail: {
         type: Sequelize.STRING,
+        defaultValue:
+          "http://localhost:3001/public/images/default/default-loading-image.png",
       },
       color: {
         type: Sequelize.JSON,

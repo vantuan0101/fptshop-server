@@ -50,6 +50,7 @@ module.exports = {
       },
       thumbnail: {
         type: Sequelize.STRING,
+        defaultValue: "http://localhost:3001/public/images/default/default-loading-image.png",
       },
       color: {
         type: Sequelize.JSON,

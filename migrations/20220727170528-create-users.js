@@ -28,6 +28,11 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue: "client",
       },
+      avatar: {
+        type: Sequelize.STRING,
+        defaultValue: "http://localhost:3001/public/images/default/defaultavt.png",
+
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

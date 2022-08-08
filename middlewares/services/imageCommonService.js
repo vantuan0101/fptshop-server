@@ -17,7 +17,9 @@ const getPathImage = (fileImg) => {
 // ------------------------------------------------------------
 const deleteImage = (image) => {
   fs.unlink(appDir + image.slice(21), function (err) {
-    if (err) throw err;
+    if (err) {
+      console.log("File not Found!");
+    }
     // if no error, file has been deleted successfully
     console.log("File deleted!");
   });

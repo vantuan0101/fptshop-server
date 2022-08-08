@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
   class Tablets extends Model {
     /**
@@ -45,6 +46,8 @@ module.exports = (sequelize, DataTypes) => {
       },
       thumbnail: {
         type: DataTypes.STRING,
+        defaultValue:
+          "http://localhost:3001/public/images/default/default-loading-image.png",
       },
       color: {
         type: DataTypes.JSON,

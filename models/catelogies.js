@@ -20,6 +20,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       catelogy: {
         type : DataTypes.JSON,
+      },
+      image :{
+        type: DataTypes.STRING,
       }
       
     },

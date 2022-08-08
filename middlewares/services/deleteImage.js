@@ -14,6 +14,10 @@ const handleDeleteImage = (ProductName) => async (req, res, next) => {
         deleteImage(item);
       });
     }
+
+    if (res.imageIcon) {
+      deleteImage(res.imageIcon);
+    }
     next();
   } catch (error) {
     res.status(500).json({

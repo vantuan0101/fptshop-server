@@ -3,13 +3,14 @@ const { getPathImage, deleteImage } = require("./imageCommonService");
 const handleUpdateImage = (ProductName) => async (req, res, next) => {
   const { id } = req.params;
 
+  const fileImg = req.files;
+  // console.log(fileImg);
+  const thumbnail = getPathImage(fileImg?.thumbnail)?.toString();
+  const listImage = getPathImage(fileImg?.image);
+  const imageIcon = getPathImage(fileImg?.imageIcon)?.toString();
+  // console.log(thumbnail);
+  // console.log(listImage);
   try {
-    const fileImg = req.files;
-    // console.log(fileImg);
-    const thumbnail = getPathImage(fileImg?.thumbnail)?.toString();
-    const listImage = getPathImage(fileImg?.image);
-    console.log(thumbnail);
-    console.log(listImage);
     const res = await ProductName.findOne({
       where: { id },
     });
@@ -20,6 +21,9 @@ const handleUpdateImage = (ProductName) => async (req, res, next) => {
       res.image.forEach((item) => {
         deleteImage(item);
       });
+    }
+    if (imageIcon) {
+      deleteImage(res.imageIcon);
     }
     next();
   } catch (error) {

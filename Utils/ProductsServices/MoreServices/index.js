@@ -1,31 +1,29 @@
 // Get Hot Products
-const getHotProducts =
-  (ModelBrands, Products, StatusSales) => async (req, res) => {
-    try {
-      // const optionsReq = req.params;
-      const productList = await ModelBrands.findAll({
+const getHotProducts = (ModelBrands, Products) => async (req, res) => {
+  try {
+    // const optionsReq = req.params;
+    const productList = await Products.findAll({
+      
+      include: {
+        model: ModelBrands,
         attributes: { exclude: ["createdAt", "updatedAt"] },
-
-        include: {
-          model: Products,
-          where: {
-            isHot: true,
-          },
-          include: StatusSales,
-        },
-        order: [["id", "ASC"]],
-      });
-      res.status(200).json({
-        status: "success",
-        data: productList,
-      });
-    } catch (error) {
-      res.status(500).json({
-        status: "fail",
-        message: error.message,
-      });
-    }
-  };
+      },
+      where: {
+        isHot: true,
+      },
+      order: [["id", "ASC"]],
+    });
+    res.status(200).json({
+      status: "success",
+      data: productList,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: error.message,
+    });
+  }
+};
 module.exports = {
   getHotProducts,
 };

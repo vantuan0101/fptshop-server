@@ -1,5 +1,8 @@
 const { getPathImage } = require("../middlewares/services/imageCommonService");
 const { Catelogies, sequelize } = require("../models");
+const dotenv = require("dotenv");
+dotenv.config({ path: "./config.env" });
+const base_url = process.env.BASE_URL;
 
 const getCatelogyDetails = async (req, res) => {
   try {
@@ -36,11 +39,13 @@ const getOneCatelogy = async (req, res) => {
 const createCatelogy = async (req, res) => {
   const catelogy = req.body;
   const fileImg = req.files;
-  const listImage = getPathImage(fileImg?.imageIcon)?.toString();
+  const listImage = base_url + fileImg.imageIcon[0].path;
+
+
   try {
     const newCatelogy = await Catelogies.create({
       ...catelogy,
-      image : listImage,
+      imageIcon: listImage,
     });
     await newCatelogy.save();
     res.status(201).json({
@@ -58,14 +63,15 @@ const updateCatelogy = async (req, res) => {
   const { id } = req.params;
   const catelogy = req.body;
   const fileImg = req.files;
-  const listImage = getPathImage(fileImg?.imageIcon)?.toString();
-  // console.log(catelogy);
+  const listImage = base_url + fileImg.imageIcon[0].path;
+
+  // console.log(fileImg);
   // console.log(listImage);
   try {
     const updatedCatelogy = await Catelogies.update(
       {
         ...catelogy,
-        image : listImage,
+        imageIcon: listImage,
       },
       {
         where: { id },

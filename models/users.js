@@ -35,8 +35,8 @@ module.exports = (sequelize, DataTypes) => {
       },
 
       avatar: {
-        type: DataTypes.STRING,
-        defaultValue: "http://localhost:3001/public/images/default/defaultavt.png",
+        type: DataTypes.JSON,
+        defaultValue: '{"public_id": null, "url": "http://localhost:3001/public/images/default/defaultavt.png"}',
       },
     },
 

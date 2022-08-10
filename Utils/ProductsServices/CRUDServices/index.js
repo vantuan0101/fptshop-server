@@ -59,24 +59,27 @@ const returnGetProduct = (ProductName) => async (req, res) => {
 
 const returnCreateProduct = (ProductName) => async (req, res) => {
   const fileImg = req.files;
-  const thumbnail = getPathImage(fileImg?.thumbnail)?.toString();
-  const listImage = getPathImage(fileImg?.image);
-  // console.log(listImage);
+  const urlThumbnail = getPathImage(fileImg?.thumbnail)?.toString();
+  const urlListImage = getPathImage(fileImg?.image);
+  const public_id_thumbnail = fileImg?.thumbnail?.map((item) => item.filename)?.toString();
+  const public_id_image = fileImg?.image?.map((item) => item.filename);
+  const thumbnail = { public_id: public_id_thumbnail, url: urlThumbnail };
+  const image = { public_id: public_id_image, url: urlListImage };
   // console.log(thumbnail);
+  // console.log(image);
   const dataProduct = req.body;
-  // console.log(dataProduct);
-  // let color = (dataProduct?.color);
-  // let options = (dataProduct?.options);
+  console.log(dataProduct);
+
   const color =
     dataProduct?.color !== "" ? dataProduct?.color?.split(",") : null;
   const options =
     dataProduct?.options !== "" ? dataProduct?.options?.split(",") : null;
-  // console.log(typeof(dataProduct?.color),color);
+  // console.log(typeof(dataProduct?.options),options);
   try {
     const newProduct = await ProductName.create({
       ...dataProduct,
       thumbnail,
-      image: listImage,
+      image,
       color,
       options,
     });
@@ -98,17 +101,18 @@ const returnUpdateProduct = (ProductName) => async (req, res) => {
   const { id } = req.params;
 
   const fileImg = req.files;
-  // console.log(fileImg);
-  const thumbnail = getPathImage(fileImg?.thumbnail)?.toString();
-  const listImage = getPathImage(fileImg?.image);
-  // console.log(thumbnail);
-  // console.log(listImage);
+  const urlThumbnail = getPathImage(fileImg?.thumbnail)?.toString();
+  const urlListImage = getPathImage(fileImg?.image);
+  const public_id_thumbnail = fileImg?.thumbnail?.map((item) => item.filename)?.toString();
+  const public_id_image = fileImg?.image?.map((item) => item.filename);
+  const thumbnail = { public_id: public_id_thumbnail, url: urlThumbnail };
+  const image = { public_id: public_id_image, url: urlListImage };
   const dataProduct = req.body;
   // console.log(dataProduct);
   const color =
-  dataProduct?.color !== "" ? dataProduct?.color?.split(",") : null;
-const options =
-  dataProduct?.options !== "" ? dataProduct?.options?.split(",") : null;
+    dataProduct?.color !== "" ? dataProduct?.color?.split(",") : null;
+  const options =
+    dataProduct?.options !== "" ? dataProduct?.options?.split(",") : null;
 
   // console.log(color, options);
 
@@ -117,8 +121,8 @@ const options =
     const newProduct = await ProductName.update(
       {
         ...dataProduct,
-        thumbnail: thumbnail,
-        image: listImage,
+        thumbnail,
+        image,
         color: color,
         options,
       },

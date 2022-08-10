@@ -1,4 +1,4 @@
-const { deleteImage } = require("./imageCommonService");
+const { deleteImage , deleteImageLocal} = require("./imageCommonService");
 
 const handleDeleteImage = (ProductName) => async (req, res, next) => {
   const { id } = req.params;
@@ -6,17 +6,17 @@ const handleDeleteImage = (ProductName) => async (req, res, next) => {
     const res = await ProductName.findOne({
       where: { id },
     });
-    if (res.thumbnail) {
-      deleteImage(res.thumbnail);
+    if (res?.thumbnail?.public_id) {
+      deleteImage(res?.thumbnail?.public_id);
     }
-    if (res.image) {
-      res.image.forEach((item) => {
+    if (res?.image.public_id) {
+      res?.image?.public_id?.forEach((item) => {
         deleteImage(item);
       });
     }
 
-    if (res.imageIcon) {
-      deleteImage(res.imageIcon);
+    if (res?.imageIcon) {
+      deleteImageLocal(res?.imageIcon);
     }
     next();
   } catch (error) {

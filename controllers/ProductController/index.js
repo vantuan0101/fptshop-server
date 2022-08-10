@@ -51,6 +51,8 @@ const {
   searchProduct,
   getHotPhone,
   getHotLaptop,
+  getHotTablet,
+  getHotDesktop
 } = require("./MoreController");
 module.exports = {
   // Phones
@@ -97,4 +99,6 @@ module.exports = {
   searchProduct,
   getHotPhone,
   getHotLaptop,
+  getHotTablet,
+  getHotDesktop
 };

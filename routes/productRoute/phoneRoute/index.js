@@ -11,7 +11,7 @@ const {
 const {
   filterProduct,
 } = require("../../../middlewares/filterProduct/filterProduct");
-const { uploadImage } = require("../../../middlewares/upload/uploadImage");
+const { uploadImageCloud } = require("../../../middlewares/upload/uploadCloud");
 
 const phoneRouter = require("express").Router();
 
@@ -19,10 +19,7 @@ phoneRouter
   .route("/dien-thoai/:id")
   .get(getPhoneById)
   .patch(
-    uploadImage("products/phones", [
-      { name: "thumbnail" },
-      { name: "image", maxCount: 12 },
-    ]),
+    uploadImageCloud([{ name: "thumbnail" }, { name: "image", maxCount: 12 }]),
     updateImagePhone,
     updatePhoneProduct
   )
@@ -31,10 +28,11 @@ phoneRouter
   .route("/dien-thoai")
   .get(filterProduct, getAllPhone)
   .post(
-    uploadImage("products/phones", [
-      { name: "thumbnail" },
-      { name: "image", maxCount: 12 },
-    ]),
+    // uploadImage("products/phones", [
+    //   { name: "thumbnail" },
+    //   { name: "image", maxCount: 12 },
+    // ]),
+    uploadImageCloud([{ name: "thumbnail" }, { name: "image", maxCount: 12 }]),
     createPhoneProduct
   );
 

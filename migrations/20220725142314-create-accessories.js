@@ -31,7 +31,10 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue: 0,
       },
-
+      discountValue: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+      },
       options: {
         type: Sequelize.JSON,
       },
@@ -48,7 +51,9 @@ module.exports = {
 
       },
       thumbnail: {
-        type: Sequelize.STRING,
+        type: Sequelize.JSON,
+        defaultValue : '{"public_id" : null,"url" : "http://localhost:3001/public/images/default/default-loading-image.png"}',
+
       },
       color: {
         type: Sequelize.JSON,

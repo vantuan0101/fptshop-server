@@ -10,6 +10,7 @@ const {
 const {
   filterProduct,
 } = require("../../../middlewares/filterProduct/filterProduct");
+const { uploadImageCloud } = require("../../../middlewares/upload/uploadCloud");
 const { uploadImage } = require("../../../middlewares/upload/uploadImage");
 
 const laptopRouter = require("express").Router();
@@ -18,10 +19,7 @@ laptopRouter
   .route("/laptop/:id")
   .get(getLaptopById)
   .patch(
-    uploadImage("products/laptops", [
-      { name: "thumbnail" },
-      { name: "image", maxCount: 12 },
-    ]),
+    uploadImageCloud([{ name: "thumbnail" }, { name: "image", maxCount: 12 }]),
     updateImageLaptop,
     updateLaptopProduct
   )
@@ -30,10 +28,8 @@ laptopRouter
   .route("/laptop")
   .get(filterProduct, getAllLaptop)
   .post(
-    uploadImage("products/laptops", [
-      { name: "thumbnail" },
-      { name: "image", maxCount: 12 },
-    ]),
+    uploadImageCloud([{ name: "thumbnail" }, { name: "image", maxCount: 12 }]),
+
     createLaptopProduct
   );
 module.exports = { laptopRouter };

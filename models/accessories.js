@@ -27,9 +27,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       discount: {
         type: DataTypes.STRING,
+
+      },
+      discountValue: {
+        type: DataTypes.INTEGER,
         defaultValue: 0,
       },
-
       options: {
         type: DataTypes.JSON,
       },
@@ -44,7 +47,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
       },
       thumbnail: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
+        defaultValue : '{"public_id" : null,"url" : "http://localhost:3001/public/images/default/default-loading-image.png"}',
       },
       color: {
         type: DataTypes.JSON,

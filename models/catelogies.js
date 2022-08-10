@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       path : {
         type: DataTypes.STRING,
       },
-      image: {
+      imageIcon: {
         type: DataTypes.STRING,
       },
     },

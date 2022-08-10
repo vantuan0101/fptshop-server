@@ -17,7 +17,7 @@ module.exports = {
       path : {
         type: Sequelize.STRING,
       },
-      image :{
+      imageIcon :{
         type: Sequelize.STRING,
       },
       createdAt: {

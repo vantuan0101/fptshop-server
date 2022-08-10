@@ -23,7 +23,7 @@ catelogiesRouter
   .get(getOneCatelogy)
   .patch(
     uploadImage("products/catelogies", [{ name: "imageIcon" }]),
-    // handleUpdateImage(Catelogies),
+    handleUpdateImage(Catelogies),
     updateCatelogy
   )
   .delete(handleDeleteImage(Catelogies), deleteCatelogy);

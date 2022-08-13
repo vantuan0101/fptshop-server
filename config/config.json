@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "vantuan123",
-    "database": "fptshop",
-    "host": "127.0.0.1",
+    "username": "l5p2zB98ig",
+    "password": "ceuGxdZIyL",
+    "database": "l5p2zB98ig",
+    "host": "remotemysql.com",
     "dialect": "mysql"
   },
   "test": {
@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "xjaqaagmgmefmz",
-    "password": "fb2bf80b80576bc424957b91c0aed3992d7d5a3ae625481e24bd23aff21a0d51",
-    "database": "d79fmpn311rssk",
-    "host": "ec2-3-225-110-188.compute-1.amazonaws.com",
-    "dialect": "postgres"
+    "username": "l5p2zB98ig",
+    "password": "ceuGxdZIyL",
+    "database": "l5p2zB98ig",
+    "host": "remotemysql.com",
+    "dialect": "mysql"
   }
 }

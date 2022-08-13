@@ -65,11 +65,17 @@ const returnCreateProduct = (ProductName) => async (req, res) => {
     ?.map((item) => item.filename)
     ?.toString();
   const defaultImage = {
-    url: "http://localhost:3001/public/images/default/default-loading-image.png"
+    url: `${process.env.BASE_URL}public/images/default/default-loading-image.png`,
   };
   const public_id_image = fileImg?.image?.map((item) => item.filename);
-  const thumbnail = { public_id: public_id_thumbnail, url: urlThumbnail || defaultImage};
-  const image = { public_id: public_id_image, url: urlListImage || defaultImage };
+  const thumbnail = {
+    public_id: public_id_thumbnail,
+    url: urlThumbnail || defaultImage,
+  };
+  const image = {
+    public_id: public_id_image,
+    url: urlListImage || defaultImage,
+  };
   console.log(thumbnail);
   console.log(image);
   const dataProduct = req.body;

@@ -9,7 +9,7 @@ const saltRounds = 10;
 const handleRegister = async (req, res) => {
   const fileImg = req.files;
   const defaultImage = {
-    url: "http://localhost:3001/public/images/default/defaultavt.png",
+    url: `${process.env.BASE_URL}public/images/default/defaultavt.png`,
   };
   const avatar = getPathImage(fileImg?.avatar)?.toString();
   // console.log(avatar);

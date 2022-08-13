@@ -26,7 +26,7 @@ const publicDir = path.join(__dirname, "./public");
 app.use("/public", express.static(publicDir));
 app.use("/api/v1/", rootRouter);
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 app.listen(port, async () => {
   console.log(`Server is running on port http://localhost:${port}`);

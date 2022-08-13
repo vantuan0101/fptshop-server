@@ -22,6 +22,7 @@ module.exports = {
           updatedAt: new Date(),
           catelogy:
             '[{"name": "HÃNG SẢN XUẤT","details": [{"name" : "Apple (iPhone)" , "path":"apple-iphone"},{"name" :"Samsung","path":"samsung"},{"name" : "OPPO" ,"path" : "oppo"},{"name" : "Xiaomi" ,"path" : "xiaomi"},{"name":"Vivo","path":"vivo"},{"name":"Tecno","path":"tecno"},{"name":"Nokia","path":"nokia"},{"name":"Asus","path":"asus"},{"name":"Masstel" ,"path":"masstel"},{"name" :"Realme" ,"path":"realme"}]},{"name": "ĐỒNG HỒ THÔNG MINH","details": [{"name" :"Apple Watch" ,"path":"apple-watch"},{"name":"Samsung","path":"samsung"},{"name":"Oppo","path":"oppo"},{"name":"Masstel","path":"masstel"},{"name":"Xiaomi","path":"xiaomi"},{"name":"Garmin","path":"garmin"},{"name":"Huawei","path":"huawei"}]}]',
+          imageIcon : "https://fptshop-server.herokuapp.com/public/images/catelogies/icon-mobile.webp"
         },
         {
           name: "Laptop",
@@ -30,6 +31,18 @@ module.exports = {
             '[{"name": "HÃNG SẢN XUẤT","details": [{"name":"Apple (MacBook)","path":"apple-macbook"},{"name":"Asus","path":"asus"},{"name":"HP","path":"hp"},{"name":"Acer","path":"acer"},{"name":"MSI","path":"msi"},{"name":"Lenovo","path":"lenovo"},{"name":"Dell","path":"dell"},{"name":"Microsoft (Surface)","path":"microsoft-surface"},{"name":"Gigabyte","path":"gigabyte"},{"name":"Fujitsu"},{"name":"Chuwi"},{"name":"Avita"},{"name":"Masstel"}]},{"name": "Phần Mềm","details": [{"name":"Diệt Virus"},{"name":"Microsoft Office"},{"name":"Windows"},{"name":"Phần mềm khác"}]}]',
           createdAt: new Date(),
           updatedAt: new Date(),
+          imageIcon : "https://fptshop-server.herokuapp.com/public/images/catelogies/icon-laptop.webp"
+
+        },
+        {
+          name: "PC - Lắp ráp",
+          path : "desktops",
+          catelogy:
+            '[{"name": "","details": [{"name":"PC","path":"desktops"},{"name":"Linh kiện","path":"desktops"}]]',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          imageIcon : "https://fptshop-server.herokuapp.com/public/images/catelogies/icon-pc.webp"
+
         },
         {
           name: "Máy tính bảng",
@@ -38,12 +51,16 @@ module.exports = {
             '[{"name": "HÃNG SẢN XUẤT","details": [{"name":"Apple (iPad)","path":"apple-ipad"},{"name":"Samsung","path":"samsung"},{"name":"Masstel","path":"masstel"},{"name":"Lenovo","path":"lenovo"},{"name":"Xiaomi","path":"xiaomi"},{"name":"Coolpad"},{"name":"Nexta"}]}]',
           createdAt: new Date(),
           updatedAt: new Date(),
+          imageIcon : "https://fptshop-server.herokuapp.com/public/images/catelogies/icon-tablet.webp"
+
         },
         {
           name: "Thiết bị thông minh",
           path : "thiet-bi-thong-minh",
 
           createdAt: new Date(),
+          imageIcon : "https://fptshop-server.herokuapp.com/public/images/catelogies/icon-smart.webp",
+
           updatedAt: new Date(),
         },
         {
@@ -52,6 +69,8 @@ module.exports = {
 
           createdAt: new Date(),
           updatedAt: new Date(),
+          imageIcon : "https://fptshop-server.herokuapp.com/public/images/catelogies/icon-houseware.webp"
+
         },
         {
           name: "Apple",
@@ -61,6 +80,8 @@ module.exports = {
 
           createdAt: new Date(),
           updatedAt: new Date(),
+          imageIcon : "https://fptshop-server.herokuapp.com/public/images/catelogies/icon-apple.webp"
+
         },
         {
           name: "Samsung",
@@ -68,6 +89,8 @@ module.exports = {
 
           createdAt: new Date(),
           updatedAt: new Date(),
+          imageIcon : "https://fptshop-server.herokuapp.com/public/images/catelogies/icon-samsung.webp"
+
         },
         {
           name: "Đồng hồ thông minh",
@@ -75,6 +98,8 @@ module.exports = {
 
           createdAt: new Date(),
           updatedAt: new Date(),
+          imageIcon : "https://fptshop-server.herokuapp.com/public/images/catelogies/icon-smartwatch.webp"
+
         },
         {
           name: "Phụ kiện",
@@ -84,6 +109,8 @@ module.exports = {
 
           createdAt: new Date(),
           updatedAt: new Date(),
+          imageIcon : "https://fptshop-server.herokuapp.com/public/images/catelogies/icon-accessories.webp"
+
         },
         {
           name: "Màn hình",
@@ -91,6 +118,8 @@ module.exports = {
 
           createdAt: new Date(),
           updatedAt: new Date(),
+          imageIcon : "https://fptshop-server.herokuapp.com/public/images/catelogies/icon-screen.webp"
+
         },
         {
           name: "Máy cũ",
@@ -98,6 +127,8 @@ module.exports = {
 
           createdAt: new Date(),
           updatedAt: new Date(),
+          imageIcon : "https://fptshop-server.herokuapp.com/public/images/catelogies/icon-tcdm.webp"
+
         },
       ],
       {}

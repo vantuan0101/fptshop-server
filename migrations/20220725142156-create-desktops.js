@@ -64,6 +64,10 @@ module.exports = {
       payment: {
         type: Sequelize.STRING,
       },
+      typeProduct :  {
+        type: Sequelize.STRING,
+        defaultValue: "desktops",
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

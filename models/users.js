@@ -38,6 +38,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.JSON,
         defaultValue: '{"public_id": null, "url": "http://localhost:3001/public/images/default/defaultavt.png"}',
       },
+      statusValidate: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      }
     },
 
     {

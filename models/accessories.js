@@ -60,6 +60,10 @@ module.exports = (sequelize, DataTypes) => {
       payment: {
         type: DataTypes.STRING,
       },
+      typeProduct :  {
+        type: DataTypes.STRING,
+        defaultValue: "phu-kien",
+      }
     },
     {
       sequelize,

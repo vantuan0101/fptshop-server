@@ -29,7 +29,7 @@ const returnGetAllProduct = (BrandName, ProductName) => async (req, res) => {
   } catch (error) {
     res.status(500).json({
       status: "fail",
-      message: "Product not found",
+      message: error,
     });
   }
 };
@@ -68,7 +68,7 @@ const returnCreateProduct = (ProductName) => async (req, res) => {
   // console.log(thumbnail);
   // console.log(image);
   const dataProduct = req.body;
-  console.log(dataProduct);
+  // console.log(dataProduct);
 
   const color =
     dataProduct?.color !== "" ? dataProduct?.color?.split(",") : null;

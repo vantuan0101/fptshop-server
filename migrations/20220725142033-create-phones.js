@@ -63,6 +63,10 @@ module.exports = {
       payment: {
         type: Sequelize.STRING,
       },
+      typeProduct :  {
+        type: Sequelize.STRING,
+        defaultValue: "dien-thoai",
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

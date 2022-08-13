@@ -63,6 +63,10 @@ const { Model } = require("sequelize");
         payment: {
           type: DataTypes.STRING,
         },
+        typeProduct :  {
+          type: DataTypes.STRING,
+          defaultValue: "laptop",
+        }
       },
       {
         sequelize,

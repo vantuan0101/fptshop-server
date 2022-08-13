@@ -67,6 +67,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      typeProduct :  {
+        type: Sequelize.STRING,
+        defaultValue: "may-tinh-bang",
+      },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,

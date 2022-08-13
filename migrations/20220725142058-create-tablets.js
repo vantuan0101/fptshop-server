@@ -29,7 +29,6 @@ module.exports = {
       },
       discount: {
         type: Sequelize.STRING,
-
       },
       discountValue: {
         type: Sequelize.INTEGER,
@@ -51,8 +50,6 @@ module.exports = {
       },
       thumbnail: {
         type: Sequelize.JSON,
-        defaultValue : '{"public_id" : null,"url" : "http://localhost:3001/public/images/default/default-loading-image.png"}',
-
       },
       color: {
         type: Sequelize.JSON,
@@ -67,7 +64,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      typeProduct :  {
+      typeProduct: {
         type: Sequelize.STRING,
         defaultValue: "may-tinh-bang",
       },

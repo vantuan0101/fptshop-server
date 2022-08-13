@@ -30,9 +30,6 @@ module.exports = {
       },
       avatar: {
         type: Sequelize.STRING,
-        defaultValue: '{"public_id": null, "url": "http://localhost:3001/public/images/default/defaultavt.png"}',
-
-
       },
       statusValidate: {
         type: Sequelize.BOOLEAN,

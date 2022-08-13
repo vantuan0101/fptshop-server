@@ -12,7 +12,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: "BrandDesktops",
-
           key: "id",
         },
       },
@@ -52,7 +51,6 @@ module.exports = {
       },
       thumbnail: {
         type: Sequelize.JSON,
-        defaultValue : '{"public_id" : null,"url" : "http://localhost:3001/public/images/default/default-loading-image.png"}',
 
       },
       color: {

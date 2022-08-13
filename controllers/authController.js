@@ -10,7 +10,9 @@ const saltRounds = 10;
 
 const handleRegister = async (req, res) => {
   const fileImg = req.files;
+  const defaultImage = {url :'http://localhost:3001/public/images/default/defaultavt.png'}
   const avatar = getPathImage(fileImg?.avatar)?.toString();
+  console.log(avatar);
   try {
     const { first_name, last_name, email, phone, password, type_user } =
       req.body;
@@ -39,7 +41,7 @@ const handleRegister = async (req, res) => {
       phone,
       password: hashPassword,
       type_user,
-      avatar,
+      avatar : avatar || defaultImage,
     });
 
     // console.log(newUser);

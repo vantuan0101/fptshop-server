@@ -49,8 +49,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       thumbnail: {
         type: DataTypes.JSON,
-        defaultValue : '{"public_id" : null,"url" : "http://localhost:3001/public/images/default/default-loading-image.png"}',
-
       },
       color: {
         type: DataTypes.STRING,
@@ -62,10 +60,10 @@ module.exports = (sequelize, DataTypes) => {
       payment: {
         type: DataTypes.STRING,
       },
-      typeProduct :  {
+      typeProduct: {
         type: DataTypes.STRING,
         defaultValue: "desktops",
-      }
+      },
     },
     {
       sequelize,

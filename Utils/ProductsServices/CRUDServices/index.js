@@ -61,12 +61,17 @@ const returnCreateProduct = (ProductName) => async (req, res) => {
   const fileImg = req.files;
   const urlThumbnail = getPathImage(fileImg?.thumbnail)?.toString();
   const urlListImage = getPathImage(fileImg?.image);
-  const public_id_thumbnail = fileImg?.thumbnail?.map((item) => item.filename)?.toString();
+  const public_id_thumbnail = fileImg?.thumbnail
+    ?.map((item) => item.filename)
+    ?.toString();
+  const defaultImage = {
+    url: "http://localhost:3001/public/images/default/default-loading-image.png"
+  };
   const public_id_image = fileImg?.image?.map((item) => item.filename);
-  const thumbnail = { public_id: public_id_thumbnail, url: urlThumbnail };
-  const image = { public_id: public_id_image, url: urlListImage };
-  // console.log(thumbnail);
-  // console.log(image);
+  const thumbnail = { public_id: public_id_thumbnail, url: urlThumbnail || defaultImage};
+  const image = { public_id: public_id_image, url: urlListImage || defaultImage };
+  console.log(thumbnail);
+  console.log(image);
   const dataProduct = req.body;
   // console.log(dataProduct);
 
@@ -103,7 +108,9 @@ const returnUpdateProduct = (ProductName) => async (req, res) => {
   const fileImg = req.files;
   const urlThumbnail = getPathImage(fileImg?.thumbnail)?.toString();
   const urlListImage = getPathImage(fileImg?.image);
-  const public_id_thumbnail = fileImg?.thumbnail?.map((item) => item.filename)?.toString();
+  const public_id_thumbnail = fileImg?.thumbnail
+    ?.map((item) => item.filename)
+    ?.toString();
   const public_id_image = fileImg?.image?.map((item) => item.filename);
   const thumbnail = { public_id: public_id_thumbnail, url: urlThumbnail };
   const image = { public_id: public_id_image, url: urlListImage };

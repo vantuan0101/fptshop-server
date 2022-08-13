@@ -24,8 +24,7 @@ module.exports = {
       },
       isHot: {
         type: Sequelize.BOOLEAN,
-        defaultValue : false,
-
+        defaultValue: false,
       },
       discount: {
         type: Sequelize.STRING,
@@ -47,13 +46,10 @@ module.exports = {
       },
       gift_online: {
         type: Sequelize.BOOLEAN,
-        defaultValue : false,
-
+        defaultValue: false,
       },
       thumbnail: {
         type: Sequelize.JSON,
-        defaultValue : '{"public_id" : null,"url" : "http://localhost:3001/public/images/default/default-loading-image.png"}',
-
       },
       color: {
         type: Sequelize.JSON,
@@ -64,7 +60,7 @@ module.exports = {
       payment: {
         type: Sequelize.STRING,
       },
-      typeProduct :  {
+      typeProduct: {
         type: Sequelize.STRING,
         defaultValue: "phu-kien",
       },

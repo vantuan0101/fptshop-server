@@ -9,10 +9,11 @@ const path = require("path");
 const cors = require("cors");
 const app = express();
 dotenv.config({ path: "./config.env" });
-app.use(bodyParser.urlencoded({ extended: true }));
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
 app.use(bodyParser.json());
-// app.use(express.json())
-// app.use(express.urlencoded({ extended: true }));
+
 app.use(cors({credentials :true , origin : 'http://localhost:3000'}));
 app.use(cookieParser());
 

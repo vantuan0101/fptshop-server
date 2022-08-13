@@ -4,15 +4,15 @@ const jwt = require("jsonwebtoken");
 const { Users } = require("../models");
 const { sendMail } = require("../Utils/mailer");
 
-
-
 const saltRounds = 10;
 
 const handleRegister = async (req, res) => {
   const fileImg = req.files;
-  const defaultImage = {url :'http://localhost:3001/public/images/default/defaultavt.png'}
+  const defaultImage = {
+    url: "http://localhost:3001/public/images/default/defaultavt.png",
+  };
   const avatar = getPathImage(fileImg?.avatar)?.toString();
-  console.log(avatar);
+  // console.log(avatar);
   try {
     const { first_name, last_name, email, phone, password, type_user } =
       req.body;
@@ -41,7 +41,7 @@ const handleRegister = async (req, res) => {
       phone,
       password: hashPassword,
       type_user,
-      avatar : avatar || defaultImage,
+      avatar: avatar || defaultImage,
     });
 
     // console.log(newUser);
@@ -55,7 +55,6 @@ const handleRegister = async (req, res) => {
       errCode: 0,
       status: "Success",
       message: "Please check your email to confirm your email",
-      
     });
   } catch (error) {
     res.status(500).json({
@@ -143,7 +142,15 @@ const handleLoging = async (req, res) => {
     if (user) {
       const result = bcrypt.compareSync(data.password, user.password);
       if (result) {
-        const { first_name, last_name, email, phone, type_user, avatar ,statusValidate } = user;
+        const {
+          first_name,
+          last_name,
+          email,
+          phone,
+          type_user,
+          avatar,
+          statusValidate,
+        } = user;
         const returnUser = {
           first_name,
           last_name,
@@ -151,7 +158,7 @@ const handleLoging = async (req, res) => {
           phone,
           type_user,
           avatar,
-          statusValidate
+          statusValidate,
         };
         const newUser = { first_name, last_name, email, phone, type_user };
         const token = jwt.sign(newUser, process.env.JWT_SECRET, {

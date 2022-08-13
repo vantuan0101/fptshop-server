@@ -38,7 +38,7 @@ module.exports = {
           name: "PC - Lắp ráp",
           path : "desktops",
           catelogy:
-            '[{"name": "","details": [{"name":"PC","path":"desktops"},{"name":"Linh kiện","path":"desktops"}]]',
+            '[{"name": "PC - Lắp ráp","details": [{"name":"PC","path":"desktops"},{"name":"Linh kiện","path":"desktops"}]}]',
           createdAt: new Date(),
           updatedAt: new Date(),
           imageIcon : "https://fptshop-server.herokuapp.com/public/images/catelogies/icon-pc.webp"

@@ -14,7 +14,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-app.use(cors({credentials :true , origin : 'http://localhost:3000'}));
+// app.use(cors({credentials :true , origin : 'http://localhost:3000'}));
+app.use(cors({credentials :true , origin : 'https://fptshop-client.herokuapp.com'}));
 app.use(cookieParser());
 
 app.use(compression({
@@ -30,6 +31,7 @@ const port = process.env.PORT || 3000;
 
 app.listen(port, async () => {
   console.log(`Server is running on port http://localhost:${port}`);
+  // console.log(`Server is running on port http://localhost:${port}`);
   try {
     await sequelize.authenticate();
     console.log("Connection has been established successfully.");

@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": "vantuan123",
-    "database": "fptshop",
-    "host": "127.0.0.1",
+    "username": "l5p2zB98ig",
+    "password": "ceuGxdZIyL",
+    "database": "l5p2zB98ig",
+    "host": "remotemysql.com",
     "dialect": "mysql"
   }
 }

@@ -36,7 +36,7 @@ app.use(
 );
 
 // Set security HTTP headers
-app.use(helmet());
+app.use(helmet({crossOriginResourcePolicy: false,}));
 
 // Limit requests from same API
 const limiter = rateLimit({

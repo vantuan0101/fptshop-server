@@ -179,7 +179,7 @@ const handleLoging = async (req, res) => {
           sameSite: true,
           // secure: false,
           secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
-          domain: "*"
+          domain: "https://fptshop-client.herokuapp.com"
         });
         res.status(200).json({
           errCode: 0,

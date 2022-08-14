@@ -80,8 +80,8 @@ const refreshTokenUser = async (req, res) => {
     const { first_name, last_name, email, phone, type_user } = decoded;
     const newUser = { first_name, last_name, email, phone, type_user };
     const newToken = jwt.sign(newUser, process.env.JWT_SECRET, {
-      expiresIn: process.env.JWT_EXPIRES_IN,
-      // expiresIn:'20s',
+      // expiresIn: process.env.JWT_EXPIRES_IN,
+      expiresIn: "20s",
     });
     res.status(200).json({
       errCode: 0,
@@ -162,8 +162,8 @@ const handleLoging = async (req, res) => {
         };
         const newUser = { first_name, last_name, email, phone, type_user };
         const token = jwt.sign(newUser, process.env.JWT_SECRET, {
-          expiresIn: process.env.JWT_EXPIRES_IN,
-          // expiresIn: '20s',
+          // expiresIn: process.env.JWT_EXPIRES_IN,
+          expiresIn: "20s",
         });
         const refreshToken = jwt.sign(
           newUser,
@@ -178,8 +178,8 @@ const handleLoging = async (req, res) => {
           path: "/",
           sameSite: true,
           // secure: false,
-          secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
-          domain: "https://fptshop-client.herokuapp.com"
+          secure: req.secure || req.headers["x-forwarded-proto"] === "https",
+          domain: "https://fptshop-client.herokuapp.com",
         });
         res.status(200).json({
           errCode: 0,

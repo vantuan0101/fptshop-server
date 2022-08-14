@@ -45,18 +45,18 @@ app.use('/api', limiter);
 app.use(xss());
 
 // Prevent parameter pollution
-app.use(
-  hpp({
-    whitelist: [
-      'duration',
-      'ratingsQuantity',
-      'ratingsAverage',
-      'maxGroupSize',
-      'difficulty',
-      'price'
-    ]
-  })
-);
+// app.use(
+//   hpp({
+//     whitelist: [
+//       'duration',
+//       'ratingsQuantity',
+//       'ratingsAverage',
+//       'maxGroupSize',
+//       'difficulty',
+//       'price'
+//     ]
+//   })
+// );
 // Serving static files
 const publicDir = path.join(__dirname, "./public");
 app.use("/public", express.static(publicDir));

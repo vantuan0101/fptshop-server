@@ -21,8 +21,8 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
 // app.use(cors({credentials :true , origin : 'http://localhost:3000'}));
 // Implement CORS
-app.use(cors({credentials :true , origin : 'https://fptshop-client.herokuapp.com/'}));
-app.options('*', cors({credentials :true , origin : 'https://fptshop-client.herokuapp.com/'}));
+app.use(cors({credentials :true , origin : 'https://fptshop-client.herokuapp.com'}));
+app.options('*', cors({credentials :true , origin : 'https://fptshop-client.herokuapp.com'}));
 app.use(cookieParser());
 
 app.use(compression({

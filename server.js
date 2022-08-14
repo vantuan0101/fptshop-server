@@ -16,6 +16,7 @@ dotenv.config({ path: "./config.env" });
 // app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 // app.use(bodyParser.json());
+
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
@@ -24,13 +25,14 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 // app.use(cors({credentials :true , origin : 'http://localhost:3000'}));
 // Implement CORS
 app.use(cors());
-// app.options('*', cors());
+app.options('*', cors());
 app.use(cookieParser());
 
 app.use(compression({
   level : 6,
   // threshold : 10 * 1000
 }));
+
 // Set security HTTP headers
 app.use(helmet());
 

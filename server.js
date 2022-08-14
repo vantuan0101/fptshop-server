@@ -9,22 +9,20 @@ const dotenv = require("dotenv");
 const path = require("path");
 const cors = require("cors");
 const app = express();
-// app.enable("trust proxy"); // trust first proxy
+app.enable("trust proxy"); // trust first proxy
 dotenv.config({ path: "./config.env" });
 
-// parse application/x-www-form-urlencoded
-// app.use(bodyParser.urlencoded({ extended: true }));
-// parse application/json
-// app.use(bodyParser.json());
 
 // Body parser, reading data from body into req.body
+// parse application/x-www-form-urlencoded
 app.use(express.json({ limit: '10kb' }));
+// parse application/json
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
 
 // app.use(cors({credentials :true , origin : 'http://localhost:3000'}));
 // Implement CORS
-app.use(cors());
+app.use(cors({ origin: 'https://fptshop-client.herokuapp.com/' }));
 app.options('*', cors());
 app.use(cookieParser());
 

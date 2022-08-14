@@ -176,7 +176,7 @@ const handleLoging = async (req, res) => {
         res.cookie("refreshToken", refreshToken, {
           httpOnly: true,
           path: "/",
-          sameSite: false,
+          sameSite: true,
           // secure: false,
           secure: req.secure || req.headers["x-forwarded-proto"] === "https",
           domain: "https://fptshop-client.herokuapp.com",

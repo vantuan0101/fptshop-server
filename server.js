@@ -36,28 +36,28 @@ app.use(
 app.use(helmet());
 
 // Limit requests from same API
-const limiter = rateLimit({
-  max: 100,
-  windowMs: 60 * 60 * 1000,
-  message: "Too many requests from this IP, please try again in an hour!",
-});
-app.use("/api", limiter);
+// const limiter = rateLimit({
+//   max: 100,
+//   windowMs: 60 * 60 * 1000,
+//   message: "Too many requests from this IP, please try again in an hour!",
+// });
+// app.use("/api", limiter);
 // Data sanitization against XSS
-// app.use(xss());
+app.use(xss());
 
 // Prevent parameter pollution
-// app.use(
-//   hpp({
-//     whitelist: [
-//       "duration",
-//       "ratingsQuantity",
-//       "ratingsAverage",
-//       "maxGroupSize",
-//       "difficulty",
-//       "price",
-//     ],
-//   })
-// );
+app.use(
+  hpp({
+    whitelist: [
+      "duration",
+      "ratingsQuantity",
+      "ratingsAverage",
+      "maxGroupSize",
+      "difficulty",
+      "price",
+    ],
+  })
+);
 // Serving static files
 const publicDir = path.join(__dirname, "./public");
 app.use("/public", express.static(publicDir));

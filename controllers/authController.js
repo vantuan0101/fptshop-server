@@ -177,7 +177,8 @@ const handleLoging = async (req, res) => {
           httpOnly: true,
           path: "/",
           sameSite: true,
-          secure: false,
+          // secure: false,
+          secure: true,
         });
         res.status(200).json({
           errCode: 0,

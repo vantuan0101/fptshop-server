@@ -43,7 +43,7 @@ app.use(helmet());
 // });
 // app.use("/api", limiter);
 // Data sanitization against XSS
-app.use(xss());
+// app.use(xss());
 
 // Prevent parameter pollution
 // app.use(

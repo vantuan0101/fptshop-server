@@ -10,12 +10,12 @@ const cors = require("cors");
 const app = express();
 dotenv.config({ path: "./config.env" });
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
 
 // app.use(cors({credentials :true , origin : 'http://localhost:3000'}));
-app.use(cors({credentials :true , origin : 'https://fptshop-client.herokuapp.com'}));
+app.use(cors({credentials :true , origin : '*'}));
 app.use(cookieParser());
 
 app.use(compression({

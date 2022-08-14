@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 // app.use(cors({credentials :true , origin : 'http://localhost:3000'}));
 // Implement CORS
 app.use(cors());
-// app.options('*', cors({credentials :true , origin : 'https://fptshop-client.herokuapp.com'}));
+app.options('*', cors());
 app.use(cookieParser());
 
 app.use(
@@ -46,18 +46,18 @@ app.use(helmet());
 app.use(xss());
 
 // Prevent parameter pollution
-app.use(
-  hpp({
-    whitelist: [
-      "duration",
-      "ratingsQuantity",
-      "ratingsAverage",
-      "maxGroupSize",
-      "difficulty",
-      "price",
-    ],
-  })
-);
+// app.use(
+//   hpp({
+//     whitelist: [
+//       "duration",
+//       "ratingsQuantity",
+//       "ratingsAverage",
+//       "maxGroupSize",
+//       "difficulty",
+//       "price",
+//     ],
+//   })
+// );
 // Serving static files
 const publicDir = path.join(__dirname, "./public");
 app.use("/public", express.static(publicDir));

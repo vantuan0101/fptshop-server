@@ -36,7 +36,6 @@ app.use(
     // threshold : 10 * 1000
   })
 );
-
 // Set security HTTP headers
 app.use(helmet({ crossOriginResourcePolicy: false }));
 

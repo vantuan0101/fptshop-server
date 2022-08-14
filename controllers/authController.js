@@ -178,7 +178,7 @@ const handleLoging = async (req, res) => {
           path: "/",
           sameSite: true,
           // secure: false,
-          secure: true,
+          secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
         });
         res.status(200).json({
           errCode: 0,

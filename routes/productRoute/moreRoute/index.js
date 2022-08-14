@@ -3,9 +3,10 @@ const {
   getHotPhone,
   getHotLaptop,
   getHotTablet,
-  getHotDesktop
+  getHotDesktop,
 } = require("../../../controllers/ProductController");
 
+// eslint-disable-next-line import/order
 const moreRouter = require("express").Router();
 
 // Get Hot Products

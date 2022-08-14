@@ -1,20 +1,21 @@
+/* eslint-disable import/order */
 const express = require("express");
 const { sequelize } = require("./models");
 const { rootRouter } = require("./routes");
 const cookieParser = require("cookie-parser");
-const xss = require('xss-clean');
-const hpp = require('hpp');
-const rateLimit = require('express-rate-limit');
-const bodyParser = require("body-parser");
+const xss = require("xss-clean");
+const hpp = require("hpp");
+const rateLimit = require("express-rate-limit");
+// const bodyParser = require("body-parser");
 const compression = require("compression");
 const helmet = require("helmet");
 const dotenv = require("dotenv");
 const path = require("path");
+// eslint-disable-next-line import/newline-after-import
 const cors = require("cors");
 const app = express();
 app.enable("trust proxy"); // trust first proxy
 dotenv.config({ path: "./config.env" });
-
 
 // Body parser, reading data from body into req.body
 // parse application/x-www-form-urlencoded
@@ -25,7 +26,7 @@ app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 // app.use(cors({credentials :true , origin : 'http://localhost:3000'}));
 // Implement CORS
 app.use(cors());
-app.options('*', cors());
+app.options("*", cors());
 app.use(cookieParser());
 
 app.use(
@@ -36,7 +37,7 @@ app.use(
 );
 
 // Set security HTTP headers
-app.use(helmet({crossOriginResourcePolicy: false,}));
+app.use(helmet({ crossOriginResourcePolicy: false }));
 
 // Limit requests from same API
 const limiter = rateLimit({

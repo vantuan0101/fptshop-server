@@ -7,6 +7,7 @@ const {
   Tablets,
   BrandDesktops,
   Desktops,
+  sequelize,
 } = require("../../../models");
 const { getHotProducts } = require("../../../Utils/ProductsServices");
 // Search Product
@@ -23,14 +24,18 @@ const searchProduct = async (req, res) => {
         status_code: 422,
       });
     }
-
-    const searchResult = await Products.findAll({
-      where: {
-        name: {
-          [Op.like]: `%${q}%`,
-        },
-      },
-    });
+    const searchResult = await sequelize.query(`SELECT * FROM Phones
+    where name like  "%${q}%"
+    UNION  
+    SELECT * FROM Tablets
+    where name like  "%${q}%"
+    UNION  
+    SELECT * FROM Laptops
+    where name like  "%${q}%"
+    UNION  
+    SELECT * FROM Desktops
+    where name like  "%${q}%"`);
+    
     res.status(200).json({
       status: "success",
       data: searchResult,

@@ -12,15 +12,7 @@ const app = express();
 app.enable("trust proxy"); // trust first proxy
 dotenv.config({ path: "./config.env" });
 
-app.use(function (req, res) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Content-Type,Content-Length, Authorization, Accept,X-Requested-With"
-  );
-  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-  next();
-});
+
 // Body parser, reading data from body into req.body
 // parse application/x-www-form-urlencoded
 app.use(express.json({ limit: "10kb" }));
@@ -29,7 +21,7 @@ app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 
 // app.use(cors({credentials :true , origin : 'http://localhost:3000'}));
 // Implement CORS
-// app.use(cors({credentials :true , origin : true}));
+app.use(cors());
 // app.options('*', cors({credentials :true , origin : 'https://fptshop-client.herokuapp.com'}));
 app.use(cookieParser());
 

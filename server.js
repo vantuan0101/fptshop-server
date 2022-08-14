@@ -9,7 +9,7 @@ const dotenv = require("dotenv");
 const path = require("path");
 const cors = require("cors");
 const app = express();
-app.enable("trust proxy"); // trust first proxy
+// app.enable("trust proxy"); // trust first proxy
 dotenv.config({ path: "./config.env" });
 
 // parse application/x-www-form-urlencoded

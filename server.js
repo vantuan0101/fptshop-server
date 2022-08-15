@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 // app.use(cors({credentials :true , origin : 'http://localhost:3000'}));
 // Implement CORS
 // eslint-disable-next-line prettier/prettier
-app.use(cors({ credentials: true, origin: true }));
+app.use(cors({ credentials: true, origin: true })); // fix error relate to cookie
 app.use(cookieParser());
 
 app.use(

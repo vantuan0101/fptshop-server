@@ -174,17 +174,13 @@ const handleLoging = async (req, res) => {
         );
         //   req.headers = token;
         res.cookie("refreshToken", refreshToken, {
-          // httpOnly: true,
-          // path: "/",
-          // sameSite: "strict",
-          // // secure: false,
-          // secure: req.secure || req.headers["x-forwarded-proto"] === "https",
-          // domain: "https://fptshop-client.herokuapp.com",
-          expires: new Date(
-            Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-          ),
           httpOnly: true,
+          path: "/",
+          // sameSite: "strict",
+          // secure: false,
           secure: req.secure || req.headers["x-forwarded-proto"] === "https",
+          // domain: "https://fptshop-client.herokuapp.com",
+          
         });
         res.status(200).json({
           errCode: 0,

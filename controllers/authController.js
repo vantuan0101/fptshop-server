@@ -177,6 +177,7 @@ const handleLoging = async (req, res) => {
           httpOnly: true,
           path: "/",
           // sameSite: "strict",
+          sameSite : "none",
           // secure: false,
           secure: req.secure || req.headers["x-forwarded-proto"] === "https",
           // domain: "https://fptshop-client.herokuapp.com",

@@ -25,19 +25,19 @@ const searchProduct = async (req, res) => {
       });
     }
     const searchResult = await sequelize.query(`
-    SELECT  Phones.id, Phones.name , Phones.typeProduct , Phones.price , Phones.discountValue FROM Phones
+    SELECT  * FROM Phones
     where name like  "%${q}%"
     UNION   
-    SELECT  Tablets.id, Tablets.name , Tablets.typeProduct , Tablets.price , Tablets.discountValue FROM Tablets
+    SELECT * FROM Tablets
     where name like  "%${q}%"
     UNION   
-    SELECT  Laptops.id, Laptops.name , Laptops.typeProduct , Laptops.price , Laptops.discountValue FROM Laptops
+    SELECT  * FROM Laptops
     where name like  "%${q}%"
     UNION   
-    SELECT  Desktops.id, Desktops.name , Desktops.typeProduct , Desktops.price , Desktops.discountValue FROM Desktops
+    SELECT  * FROM Desktops
     where name like  "%${q}%"
     `);
-    
+
     res.status(200).json({
       status: "success",
       data: searchResult[0],

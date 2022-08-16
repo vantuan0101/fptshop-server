@@ -11,7 +11,6 @@ const sendMail = async (email, subject, htmlContent) => {
   });
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    // from: "Van Tuan admin@fptshop.com",
     to: email,
     subject: subject,
     text: htmlContent,

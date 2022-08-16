@@ -24,21 +24,23 @@ const searchProduct = async (req, res) => {
         status_code: 422,
       });
     }
-    const searchResult = await sequelize.query(`SELECT * FROM Phones
+    const searchResult = await sequelize.query(`
+    SELECT Phones.name , Phones.typeProduct , Phones.price , Phones.discountValue FROM Phones
     where name like  "%${q}%"
-    UNION  
-    SELECT * FROM Tablets
+    UNION   
+    SELECT Tablets.name , Tablets.typeProduct , Tablets.price , Tablets.discountValue FROM Tablets
     where name like  "%${q}%"
-    UNION  
-    SELECT * FROM Laptops
+    UNION   
+    SELECT Laptops.name , Laptops.typeProduct , Laptops.price , Laptops.discountValue FROM Laptops
     where name like  "%${q}%"
-    UNION  
-    SELECT * FROM Desktops
-    where name like  "%${q}%"`);
+    UNION   
+    SELECT Desktops.name , Desktops.typeProduct , Desktops.price , Desktops.discountValue FROM Desktops
+    where name like  "%${q}%"
+    `);
     
     res.status(200).json({
       status: "success",
-      data: searchResult,
+      data: searchResult[0],
     });
   } catch (error) {
     res.status(500).json({
